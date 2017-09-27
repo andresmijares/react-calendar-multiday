@@ -1,0 +1,14 @@
+/bin/**
+/build/**
+/coverage/**
+/docs/**
+/jsdoc/**
+/templates/**
+/tests/bench/**
+/tests/fixtures/**
+/tests/performance/**
+/tmp/**
+test.js
+/webpack.config.babel.js
+/webpack.config.prod.js
+/undefinedclock-action-sync

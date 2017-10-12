@@ -1,17 +1,22 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import PureDayPicker from './PureDayPicker'
-import Moment from 'moment'
+import MonthComponent from './MonthComponent'
+import moment from 'moment'
 import {extendMoment} from 'moment-range'
 import {reject, or, isEmpty, values, equals, cond, T, not} from 'ramda'
 import {normalize, incMonth, decMonth, setMonthDays, TYPE, getKey} from './helpers'
 
-class DayPicker extends Component {
+class Calendar extends Component {
+  static defaultProps = {
+    year: moment().get('year'),
+    month: moment().get('month'),
+    isMultiple: false,
+  }
   constructor (props) {
     super(props)
-    this.moment = extendMoment(Moment)
+    this.moment = extendMoment(moment)
     const {selected} = this.props
-    const defaultDate = this.moment([props.year, props.month - 1])
+    const defaultDate = this.moment([props.year, props.month])
 
     this.state = {
       defaultDate: defaultDate,
@@ -58,7 +63,6 @@ class DayPicker extends Component {
   onClick (day) {
     const calendar = getKey(day.moment)
     const {selected, defaultDate, monthDays} = this.state
-
     const updatedDefaultDate = cond([
       [equals(TYPE.NEXT), () => incMonth(defaultDate)],
       [equals(TYPE.PREV), () => decMonth(defaultDate)],
@@ -66,10 +70,11 @@ class DayPicker extends Component {
     ])(day.type)
     this.setState(
       {
-        selected: {
+        selected: this.props.isMultiple ? {
           ...selected,
           [calendar]: isEmpty(or(selected[calendar], {})) ? day.moment : {},
-        },
+        }
+        : [day.moment], // is Single day ,
         defaultDate: updatedDefaultDate,
         monthDays: cond([
           [equals(TYPE.NEXT), () => setMonthDays(updatedDefaultDate, this.moment)],
@@ -77,7 +82,11 @@ class DayPicker extends Component {
           [T, () => monthDays],
         ])(day.type),
       }, () => {
-      this.props.onChange({current: day.moment.format(), selected: reject(isEmpty, values(this.state.selected)).map(d => d.format())})
+      this.props.onChange({
+        current: day.moment.format(),
+        selected: reject(isEmpty, values(this.state.selected))
+                  .map(d => d.format()),
+      })
     }
    )
   }
@@ -85,15 +94,16 @@ class DayPicker extends Component {
   retrieveSelected () {
     const nextMonth = this.moment(this.state.defaultDate).add(1, 'months')
     const prevMonth = this.moment(this.state.defaultDate).subtract(1, 'months').subtract(7, 'days')
-    return reject(isEmpty, values(this.state.selected)).filter(d => d.isBetween(prevMonth, nextMonth))
+    return reject(isEmpty, values(this.state.selected))
+    .filter(d => d.isBetween(prevMonth, nextMonth))
   }
 
   render () {
     const {defaultDate, monthDays} = this.state
     const reset = this.props.reset ? this.reset : null
     return (
-        <PureDayPicker
-            dayNames={Moment.weekdaysMin()}
+        <MonthComponent
+            dayNames={moment.weekdaysMin()}
             days={monthDays}
             selected={this.retrieveSelected()}
             defaultDate={defaultDate}
@@ -106,13 +116,14 @@ class DayPicker extends Component {
   }
 }
 
-DayPicker.propTypes = {
+Calendar.propTypes = {
   month: PropTypes.number,
   year: PropTypes.number,
   selected: PropTypes.array,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   reset: PropTypes.bool,
   DayComponent: PropTypes.node,
+  isMultiple: PropTypes.bool,
 }
 
-export default DayPicker
+export default Calendar

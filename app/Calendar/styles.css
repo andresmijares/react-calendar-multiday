@@ -94,4 +94,9 @@
   cursor: pointer;
 }
 
+.o_selected-day {
+	background: #1a728f !important;
+	color: white !important;
+}
+
 

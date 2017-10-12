@@ -22,7 +22,7 @@ const PositionDay = props => {
     background: '#4179a3',
   }
   return (
-    <div onClick={(e) => onClick(e)}
+    <div onClick={onClick}
          style={disableDate
            ? (dayIsSelected
              ? disabledAndSelected
@@ -42,7 +42,7 @@ PositionDay.propTypes = {
 export const isSelected = (momentDate, selected) => selected.some(each => each.isSame(momentDate, 'day'))
 
 export const getStyle = function (day, selected) {
-  return `${isSelected(day.moment, selected) ? 'selected-day' : ''} ${day.type}-day`
+  return `${isSelected(day.moment, selected) ? 'o_selected-day' : ''} ${day.type}-day`
 }
 
 export default PositionDay

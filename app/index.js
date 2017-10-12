@@ -1,14 +1,67 @@
 import 'babel-polyfill' /* Support for IE11 */
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import PropTypes from 'prop-types'
+import moment from 'moment'
+import PositionDay from './Calendar/PositionsDay'
+import Calendar from './Calendar/Calendar'
+import './Calendar/styles.css'
+
+const reactOnChange = ({selected}) => selected
+
+const container = {
+	width: '320px',
+	float: 'left',
+	marginRight: '50px',
+	marginBottom: '50px',
+}
+
+const selectedDays = [
+	moment().add(3, 'days'),
+	moment().add(7, 'days'),
+	moment().add(8, 'days'),
+	moment().add(10, 'days'),
+	moment().add(60, 'days'),
+]
 
 class App extends React.PureComponent {
 		render () {
 				return (
-						<div className='container'>
-								{`Calendar`}
+					<div style={{width: '800px', margin: 'auto'}}>
+						<div className='container' style={container}>
+								<Calendar
+									onChange={reactOnChange} />
+									<h3>{`Single Day Calendar`}</h3>
 						</div>
+						<div className='container' style={container}>
+								<Calendar
+									onChange={reactOnChange}
+									selected={[selectedDays[2]]} />
+									<h3>{`Single Day Calendar Pre-selected`}</h3>
+						</div>
+						<div style={{clear: 'both'}}></div>
+						<div className='container' style={container}>
+								<Calendar
+									onChange={reactOnChange}
+									month={moment().get('month') + 2}
+									selected={[selectedDays[selectedDays.length - 1]]} />
+									<h3>{`Two Months from Now`}</h3>
+						</div>
+						<div className='container' style={container}>
+								<Calendar
+									isMultiple={true}
+									DayComponent={<PositionDay />}
+									onChange={reactOnChange} />
+									<h3>{`Multiple Day Calendar`}</h3>
+						</div>
+						<div style={{clear: 'both'}}></div>
+						<div className='container' style={container}>
+								<Calendar
+									isMultiple={true}
+									selected={selectedDays}
+									onChange={reactOnChange} />
+									<h3>{`Multiple With Pre-selected days`}</h3>
+						</div>
+					</div>
 			)
 		}
 }

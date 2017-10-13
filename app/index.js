@@ -6,8 +6,6 @@ import PositionDay from './Calendar/PositionsDay'
 import Calendar from './Calendar/Calendar'
 import './Calendar/styles.css'
 
-const reactOnChange = ({selected}) => selected
-
 const container = {
 	width: '320px',
 	float: 'left',
@@ -22,6 +20,9 @@ const selectedDays = [
 	moment().add(10, 'days'),
 	moment().add(60, 'days'),
 ]
+const reactToChange = (ob) => {
+	console.warn(ob)
+}
 
 class App extends React.PureComponent {
 		render () {
@@ -29,19 +30,19 @@ class App extends React.PureComponent {
 					<div style={{width: '800px', margin: 'auto'}}>
 						<div className='container' style={container}>
 								<Calendar
-									onChange={reactOnChange} />
+									onChange={reactToChange} />
 									<h3>{`Single Day Calendar`}</h3>
 						</div>
 						<div className='container' style={container}>
 								<Calendar
-									onChange={reactOnChange}
+									onChange={reactToChange}
 									selected={[selectedDays[2]]} />
 									<h3>{`Single Day Calendar Pre-selected`}</h3>
 						</div>
 						<div style={{clear: 'both'}}></div>
 						<div className='container' style={container}>
 								<Calendar
-									onChange={reactOnChange}
+									onChange={reactToChange}
 									month={moment().get('month') + 2}
 									selected={[selectedDays[selectedDays.length - 1]]} />
 									<h3>{`Two Months from Now`}</h3>
@@ -50,7 +51,7 @@ class App extends React.PureComponent {
 								<Calendar
 									isMultiple={true}
 									DayComponent={<PositionDay />}
-									onChange={reactOnChange} />
+									onChange={reactToChange} />
 									<h3>{`Multiple Day Calendar`}</h3>
 						</div>
 						<div style={{clear: 'both'}}></div>
@@ -58,7 +59,7 @@ class App extends React.PureComponent {
 								<Calendar
 									isMultiple={true}
 									selected={selectedDays}
-									onChange={reactOnChange} />
+									onChange={reactToChange} />
 									<h3>{`Multiple With Pre-selected days`}</h3>
 						</div>
 					</div>

@@ -12,16 +12,17 @@ const getInline = (today, before) => ({
 })
 
 const DefaultDayComponent = props => {
-  const { label, selected, date, isToday, isInThePast } = props
+  const { label, date, isToday, isInThePast } = props
   const disableDate = date.moment.isBefore(moment(), 'day')
   const onClick = (e) => {
     if (disableDate) {
       e.stopPropagation()
     }
   }
+
   return (
     <div onClick={onClick}
-      className={getStyle(date, selected)}
+      className={getStyle(props)}
       style={getInline(isToday, isInThePast)}>
       {label}
     </div>)
@@ -30,16 +31,12 @@ const DefaultDayComponent = props => {
 DefaultDayComponent.propTypes = {
   label: PropTypes.number,
   date: PropTypes.object,
-  selected: PropTypes.array,
   isToday: PropTypes.bool,
   isInThePast: PropTypes.bool,
 }
 
-// can we move this to an upper level???
-export const isSelected = (momentDate, selected) => selected.some(each => each.isSame(momentDate, 'day'))
-
-export const getStyle = function (day, selected) {
-  return `${isSelected(day.moment, selected) ? 'o_selected-day' : ''} ${day.type}-day`
+export const getStyle = function ({date, isSelected}) {
+  return `${isSelected ? 'o_selected-day' : ''} ${date.type}-day`
 }
 
 export default DefaultDayComponent

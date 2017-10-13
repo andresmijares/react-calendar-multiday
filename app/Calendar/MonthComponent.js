@@ -63,6 +63,8 @@ MonthComponent.propTypes = {
   reset: PropTypes.func,
   defaultDate: PropTypes.object,
   DayComponent: PropTypes.node,
+  type: PropTypes.string,
+  channels: PropTypes.object,
 }
 
 export default MonthComponent

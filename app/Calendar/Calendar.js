@@ -5,6 +5,7 @@ import moment from 'moment'
 import {extendMoment} from 'moment-range'
 import {reject, or, isEmpty, values, equals, cond, T} from 'ramda'
 import {normalize, incMonth, decMonth, setMonthDays, TYPE, getKey} from './helpers'
+import './Calendar/styles.css'
 
 class Calendar extends Component {
   static defaultProps = {

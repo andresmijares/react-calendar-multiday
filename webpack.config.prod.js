@@ -24,16 +24,6 @@ export default {
 				filename: '[name].[chunkhash].js',
 				publicPath: basePath,
 		},
-		resolve: {
-				alias: {
-						helpers: path.resolve(__dirname, 'app/helpers/'),
-						services: path.resolve(__dirname, 'app/services/'),
-						components: path.resolve(__dirname, 'app/components/'),
-						containers: path.resolve(__dirname, 'app/containers/'),
-						generics: path.resolve(__dirname, 'app/generics/'),
-						data: path.resolve(__dirname, 'app/data/'),
-				},
-		},
 		devtool: 'source-map',
 		target: 'web',
 		module: {
@@ -61,7 +51,6 @@ export default {
 						},
 				],
 		},
-		// postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
 		plugins: [
 				new webpack.optimize.CommonsChunkPlugin({
 						name: 'vendor',

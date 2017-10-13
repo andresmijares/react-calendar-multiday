@@ -9,6 +9,9 @@
 A minimalist React Calendar used for our scheduling tools. You can play with the demo [here](
 https://csb-m4j347534p-xegaarlxnu.now.sh).
 
+If you want to play with it:
+[![Edit React Calendar Multiday](https://codesandbox.io/static/img/play-codesandbox.svg)](https://csb-m4j347534p-gqeklrvirh.now.sh)
+
 ## Install
 Using npm or yarn.
 ```

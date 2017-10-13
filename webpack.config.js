@@ -27,9 +27,6 @@ const config = {
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
-  externals: {
-    react: 'react'
-  },
   module: {
     rules: [
       { test: /\.js?$/,
@@ -37,17 +34,16 @@ const config = {
         use: [{loader: 'babel-loader'}],
       },
 			{ test: /(\.css|\.scss)$/,
-				loader: ExtractTextPlugin.extract({
-						use: [
-								'css-loader?sourceMap',
-						],
-				}),
-		},
+				loader: 'css-loader'
+		  },
     ],
   },
   resolve: {
     modules: [path.resolve('./node_modules'), path.resolve('./app')],
     extensions: ['.json', '.js'],
+  },
+  externals: {
+    react: 'react'
   },
   plugins: plugins,
 }

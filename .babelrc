@@ -20,23 +20,11 @@
       ]
     },
     "development": {
-      "plugins": ["transform-runtime", ["react-transform", {
-        "transforms": [{
-          "transform": "react-transform-hmr",
-          "imports": ["react"],
-          // this is important for Webpack HMR:
-          "locals": ["module"]
-        }]
-      }]],
-      "presets": [
-        "react-hmre"
-      ]
+      "plugins": ["transform-runtime"]
     },
     "production": {
       "plugins": [
-        "transform-runtime",
-        "transform-react-constant-elements",
-        "transform-react-remove-prop-types"
+        "transform-runtime"
       ]
     }
   }

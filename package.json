@@ -57,5 +57,9 @@
 		"ramda": "^0.24.1",
 		"react": "^16.0.0",
 		"react-dom": "16.0.0"
-	}
+	},
+	"repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgrepo/react-calendar-multiday.git"
+  },
 }

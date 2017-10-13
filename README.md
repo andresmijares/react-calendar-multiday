@@ -1,4 +1,12 @@
-# React Multiday Calendar
+# React Multiday Calendar <sup>[![Version Badge][npm-version-svg]][package-url]</sup>
+
+[![dependency status][deps-svg]][deps-url]
+[![dev dependency status][dev-deps-svg]][dev-deps-url]
+[![License][license-image]][license-url]
+[![Downloads][downloads-image]][downloads-url]
+
+[![npm badge][npm-badge-png]][package-url]
+
 
 A minimalist React Calendar used for our scheduling tools.
 
@@ -34,12 +42,12 @@ The calendar will allow to select one single day or multiples, the only differen
   }
 ```
 
-###DayComponent
+### DayComponent
 A component that will render on each day, it receives several props where the most importants **label** and **isSelected**.
-  * Label: String; Represents the day character.
-  * isSelected: Booleam; True if the day is included in the selected array.
-  * isToday: Booleam; True if the value match today;s date.
-  * isInThePast: Boolem; True if the value is before than today.
+  * **Label**: String; Represents the day character.
+  * **isSelected**: Booleam; True if the day is included in the selected array.
+  * **isToday**: Booleam; True if the value match today;s date.
+  * **isInThePast**: Boolem; True if the value is before than today.
 
 Some other properties are expose like **selected** which is the selection array, we expose it cause we need that rule to manage inside business cases.
 
@@ -77,7 +85,21 @@ const getStyle = function ({date, isSelected}) {
 }
 ```
 
+## CSS
+
+
 As you can see, we leave the default implementation as open as possible, this way we can support all the use cases we have into our apps.
 
 ## License
 MIT
+
+[package-url]: https://npmjs.org/package/react-calendar-multiday
+[npm-version-svg]: http://versionbadg.es/sgrepo/react-calendar-multiday.svg
+[deps-svg]: https://david-dm.org/sgrepo/react-calendar-multiday.svg
+[deps-url]: https://david-dm.org/react-calendar-multiday.svg
+[dev-deps-svg]: https://david-dm.org/react-calendar-multiday.svg
+[dev-deps-url]: https://david-dm.org/react-calendar-multiday.svg#info=devDependencies
+[license-image]: http://img.shields.io/npm/l/react-calendar-multiday.svg
+[license-url]: LICENSE
+[downloads-image]: http://img.shields.io/npm/dm/react-calendar-multiday.svg
+[downloads-url]: http://npm-stat.com/charts.html?package=react-calendar-multiday

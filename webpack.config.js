@@ -12,9 +12,9 @@ let outputFile
 
 if (env === 'build') {
   plugins.push(new UglifyJsPlugin({ minimize: true }))
-  outputFile = libraryName + '.min.js';
+  outputFile = libraryName + '.min.js'
 } else {
-  outputFile = libraryName + '.js';
+  outputFile = libraryName + '.js'
 }
 
 const config = {
@@ -32,7 +32,7 @@ const config = {
       {
         test: /(\.jsx|\.js)$/,
         loader: 'babel-loader',
-        exclude: /(node_modules|bower_components)/
+        exclude: /(node_modules)/,
 			},
 			{ test: /(\.css|\.scss)$/,
 				loader: ExtractTextPlugin.extract({
@@ -44,7 +44,7 @@ const config = {
     ],
   },
   resolve: {
-    modules: [path.resolve('./node_modules'), path.resolve('./src')],
+    modules: [path.resolve('./node_modules'), path.resolve('./app')],
     extensions: ['.json', '.js'],
   },
   plugins: plugins,

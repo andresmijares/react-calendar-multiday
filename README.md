@@ -4,6 +4,7 @@ A minimalist React Calendar used for our scheduling tools.
 
 ## API
 |name|type|required|default|description|
+|---|---|---|---|---|
 |**onChange**|function|Yes |-|Exposed the current selections|
 |**selected**|Array of Moment Instances|No| [] |Pass a selection of dates| 
 |**year**|Moment Object - Year|No| Current |Select the default year|

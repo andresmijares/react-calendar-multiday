@@ -3,8 +3,8 @@
 [![dependency status][deps-svg]][deps-url]
 [![dev dependency status][dev-deps-svg]][dev-deps-url]
 [![License][license-image]][license-url]
-[![npm badge][npm-badge-png]][package-url]
 
+[![npm badge][npm-badge-png]][package-url]
 
 A minimalist React Calendar used for our scheduling tools.
 
@@ -93,8 +93,9 @@ MIT
 
 [package-url]: https://npmjs.org/package/react-calendar-multiday
 [npm-version-svg]: http://versionbadg.es/sgrepo/react-calendar-multiday.svg
+[npm-badge-png]: https://nodei.co/npm/react-calendar-multiday.png?downloads=true&stars=true
 [deps-svg]: https://david-dm.org/sgrepo/react-calendar-multiday.svg
-[deps-url]: https://david-dm.org/sgrepo/react-calendar-multiday.svg
+[deps-url]: https://david-dm.org/sgrepo/react-calendar-multiday
 [dev-deps-svg]: https://david-dm.org/sgrepo/react-calendar-multiday.svg
 [dev-deps-url]: https://david-dm.org/sgrepo/react-calendar-multiday.svg#info=devDependencies
 [license-image]: http://img.shields.io/npm/l/react-calendar-multiday.svg

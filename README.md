@@ -6,7 +6,17 @@
 
 [![npm badge][npm-badge-png]][package-url]
 
-A minimalist React Calendar used for our scheduling tools.
+A minimalist React Calendar used for our scheduling tools. You can play with the demo [here](
+https://csb-m4j347534p-xegaarlxnu.now.sh).
+
+## Install
+Using npm or yarn.
+```
+  npm install react-calendar-multiday
+```
+
+## Dependencies
+It uses **moment** behind the scenes, for more information check the following API.
 
 ## API
 |name|type|required|default|description|
@@ -17,6 +27,7 @@ A minimalist React Calendar used for our scheduling tools.
 |**month**|Moment Object - Month|No| Current |Select the default month|
 |**isMultiple**|Boolean|No|false|Define if you need one sigle date selection or multiple|
 |**DayComponent**|React Node|No|Default Day Component|Renders each day into the calendar|
+|**reset**|Boolean|No|false|Display a clear selection button|
 
 ### OnChange
 Returns an object with the **current** selection and the **selected** date(s).
@@ -56,15 +67,6 @@ Common use example:
 ```javascript
 const PositionDay = props => {
   const { label, selected, date, isToday, isInThePast } = props
-  const disabledStyles = {
-    cursor: 'not-allowed',
-    background: '#e4e4e4',
-    color: '#555555',
-  }
-  const disabledAndSelected = {
-    cursor: 'not-allowed',
-    background: '#4179a3',
-  }
   const onClick = (e) => {
     if (disableDate) {
       e.stopPropagation()
@@ -81,12 +83,32 @@ const PositionDay = props => {
 const getStyle = function ({date, isSelected}) {
   return `${isSelected ? 'o_selected-day' : ''} ${date.type}-day`
 }
+const disabledStyles = {
+  cursor: 'not-allowed',
+  background: '#e4e4e4',
+  color: '#555555',
+}
+const disabledAndSelected = {
+  cursor: 'not-allowed',
+  background: '#4179a3',
+}
 ```
 
-## CSS
-
-
 As you can see, we leave the default implementation as open as possible, this way we can support all the use cases we have into our apps.
+
+## Styles
+We expose a few css clases that you can edit, otherwise, you can use our ugly css default.
+
+```javascript
+  import 'react-calendar-multiday/lib/styles.css'
+```
+
+* o_day_picker: the calendar container
+* i_day-picker-header: weeks headers
+* i_day-picker-body: calendar body
+* e_day-picker-buttons: prev and next month
+* i_day-picker-row: weeks row
+* i_day-picker-reset: reset button
 
 ## License
 MIT

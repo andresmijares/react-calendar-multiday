@@ -74,6 +74,7 @@
 	font-size: 0.7em;
 	min-height: 4em;
 }
+
 .o_day-picker .i_day-picker-row .selected-day {
 	color: white;
 	background-color: #70bde2;
@@ -91,7 +92,9 @@
 
 .o_day-picker  .i_day-picker-reset {
   width: 25%;
-  cursor: pointer;
+	cursor: pointer;
+	border: 1px solid #d3d3d3;
+	border-radius: 3px;
 }
 
 .o_selected-day {

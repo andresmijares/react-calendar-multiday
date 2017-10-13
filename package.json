@@ -2,7 +2,8 @@
 	"name": "react-calendar-multiday",
 	"version": "0.0.1",
 	"description": "A minimalist multiday calendar by Shiftgig",
-	"main": "app/index.js",
+	"main": "build/app.js",
+	"es6": "app/index.js",
 	"scripts": {
 		"start": "npm-run-all --parallel serve:dev lint:watch",
 		"serve:dev": "webpack-dev-server --host 0.0.0.0 --config ./webpack.config.babel.js",

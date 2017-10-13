@@ -14,14 +14,13 @@ const basePath = '/'
 export default {
 		entry: {
 				vendor: [
-						'react', 'redux', 'ramda',
-						'react-dom', 'react-redux', 'react-router',
+						'react', 'redux', 'react-dom'
 					],
 				app: path.resolve(__dirname, 'app/index.js'),
 		},
 		output: {
 				path: path.resolve(__dirname, 'build'),
-				filename: '[name].[chunkhash].js',
+				filename: '[name].js',
 				publicPath: basePath,
 		},
 		devtool: 'source-map',
@@ -58,10 +57,10 @@ export default {
 				}),
 
 				new WebpackMd5Hash(),
-				new ExtractTextPlugin({
-						filename: '[name].[contenthash].css',
-						allChunks: true,
-				}),
+				// new ExtractTextPlugin({
+				// 		filename: '[name].[contenthash].css',
+				// 		allChunks: true,
+				// }),
 				new webpack.DefinePlugin({
 						'process.env': {
 								NODE_ENV: JSON.stringify('production'),
@@ -89,22 +88,22 @@ export default {
 						filename: '[name].js.map',
 						exclude: ['vendor.js'],
 				}),
-				new HtmlWebPackPlugin({
-						template: './app/index.ejs',
-						minify: {
-								removeComments: true,
-								collapseWhitespace: true,
-								removeRedundantAttributes: true,
-								useShortDoctype: true,
-								removeEmptyAttributes: true,
-								removeStyleLinkTypeAttributes: true,
-								keepClosingSlash: true,
-								minifyJS: true,
-								minifyCSS: true,
-								minifyURLs: true,
-						},
-						inject: true,
-				}),
+				// new HtmlWebPackPlugin({
+				// 		template: './app/index.ejs',
+				// 		minify: {
+				// 				removeComments: true,
+				// 				collapseWhitespace: true,
+				// 				removeRedundantAttributes: true,
+				// 				useShortDoctype: true,
+				// 				removeEmptyAttributes: true,
+				// 				removeStyleLinkTypeAttributes: true,
+				// 				keepClosingSlash: true,
+				// 				minifyJS: true,
+				// 				minifyCSS: true,
+				// 				minifyURLs: true,
+				// 		},
+				// 		inject: true,
+				// }),
 
 		],
 }

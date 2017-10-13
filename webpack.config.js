@@ -27,13 +27,15 @@ const config = {
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
+  externals: {
+    react: 'react'
+  },
   module: {
     rules: [
-      {
-        test: /(\.jsx|\.js)$/,
-        loader: 'babel-loader',
-        exclude: /(node_modules)/,
-			},
+      { test: /\.js?$/,
+        exclude: /node_modules/,
+        use: [{loader: 'babel-loader'}],
+      },
 			{ test: /(\.css|\.scss)$/,
 				loader: ExtractTextPlugin.extract({
 						use: [

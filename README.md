@@ -3,14 +3,15 @@
 [![dependency status][deps-svg]][deps-url]
 [![dev dependency status][dev-deps-svg]][dev-deps-url]
 [![License][license-image]][license-url]
+[![Downloads]][downloads-image]
 
 [![npm badge][npm-badge-png]][package-url]
 
-A minimalist React Calendar used for our scheduling tools. You can play with the demo [here](
-https://csb-m4j347534p-xegaarlxnu.now.sh).
+A minimalist React Calendar used for our scheduling tools.
 
 If you want to play with it:
-[![Edit React Calendar Multiday](https://codesandbox.io/static/img/play-codesandbox.svg)](https://csb-m4j347534p-gqeklrvirh.now.sh)
+
+[![Edit React Calendar Multiday](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/m4j347534p)
 
 ## Install
 Using npm or yarn.

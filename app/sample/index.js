@@ -2,9 +2,9 @@ import 'babel-polyfill' /* Support for IE11 */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import moment from 'moment'
-import PositionDay from './Calendar/PositionsDay'
-import Calendar from './Calendar/Calendar'
-import './Calendar/styles.css'
+import PositionDay from '../Calendar/PositionsDay'
+import Calendar from '../Calendar/Calendar'
+import '../Calendar/styles.css'
 
 const container = {
 	width: '320px',

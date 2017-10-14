@@ -43,7 +43,10 @@ const config = {
     extensions: ['.json', '.js'],
   },
   externals: {
-    react: 'react'
+    react: 'react',
+    moment: 'moment',
+    'moment-range': 'moment-range',
+    ramda: 'ramda',
   },
   plugins: plugins,
 }

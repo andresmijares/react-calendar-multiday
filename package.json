@@ -1,11 +1,12 @@
 {
 	"name": "react-calendar-multiday",
-	"version": "0.0.13",
+	"version": "0.0.15",
 	"description": "A minimalist multiday calendar by Shiftgig",
 	"main": "lib/app.min.js",
 	"scripts": {
 		"build": "webpack --env build",
-		"dev": "webpack --progress --colors --watch --env dev"
+		"dev": "webpack --progress --colors --watch --env dev",
+		"test": "bundlesize"
 	},
 	"keywords": [
 		"react",
@@ -44,6 +45,7 @@
 		"babel-preset-react": "^6.5.0",
 		"babel-preset-react-hmre": "^1.1.1",
 		"babel-preset-stage-0": "^6.16.0",
+		"bundlesize": "^0.15.2",
 		"css-loader": "^0.28.7",
 		"eslint": "3.19.0",
 		"eslint-loader": "1.7.1",
@@ -59,7 +61,13 @@
 		"react-dom": "16.0.0"
 	},
 	"repository": {
-    "type": "git",
-    "url": "git+https://github.com/sgrepo/react-calendar-multiday.git"
-  }
+		"type": "git",
+		"url": "git+https://github.com/sgrepo/react-calendar-multiday.git"
+	},
+	"bundlesize": [
+    {
+      "path": "./lib/app.min.js",
+      "maxSize": "17 kB"
+    }
+  ]
 }

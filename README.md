@@ -3,6 +3,7 @@
 [![dependency status][deps-svg]][deps-url]
 [![dev dependency status][dev-deps-svg]][dev-deps-url]
 [![License][license-image]][license-url]
+[![Github file size]][file-size-image]
 [![Downloads][downloads-image]][downloads-url]
 
 [![npm badge][npm-badge-png]][package-url]
@@ -128,3 +129,4 @@ MIT
 [license-url]: LICENSE
 [downloads-image]: http://img.shields.io/npm/dm/react-calendar-multiday.svg
 [downloads-url]: http://npm-stat.com/charts.html?package=react-calendar-multiday
+[file-size-image]: https://img.shields.io/github/size/sgrepo/react-calendar-multiday/lib/app.min.js.svg

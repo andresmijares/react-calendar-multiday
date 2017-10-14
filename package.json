@@ -6,7 +6,8 @@
 	"scripts": {
 		"build": "webpack --env build",
 		"dev": "webpack --progress --colors --watch --env dev",
-		"test": "bundlesize"
+		"test": "bundlesize",
+		"serve": "webpack-dev-server --host 0.0.0.0 --config ./webpack.config.js"
 	},
 	"keywords": [
 		"react",

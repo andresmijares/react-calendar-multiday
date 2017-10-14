@@ -45,6 +45,7 @@ const config = {
   externals: {
     react: 'react',
     moment: 'moment',
+    'moment-range': 'moment-range',
     ramda: 'ramda',
   },
   plugins: plugins,

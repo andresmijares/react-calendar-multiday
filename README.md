@@ -3,7 +3,7 @@
 [![dependency status][deps-svg]][deps-url]
 [![dev dependency status][dev-deps-svg]][dev-deps-url]
 [![License][license-image]][license-url]
-[![Github file size](https://img.shields.io/github/size/sgrepo/react-calendar-multiday/lib/app.min.js.svg)]()
+[![Github file size][file-size-image]]()
 [![Downloads][downloads-image]][downloads-url]
 
 [![npm badge][npm-badge-png]][package-url]
@@ -20,8 +20,16 @@ Using npm or yarn.
   npm install react-calendar-multiday
 ```
 
+## Import
+As a default component:
+
+```javascript
+  import Calendar from 'react-calendar-multiday'
+  import 'react-calendar-multiday/lib/styles.css'
+```
+
 ## Dependencies
-It uses **moment** behind the scenes, for more information check the following API.
+It uses **moment** and **ramda** behind the scenes, we are working to remove the ramda on the next release in order to keep the bundle size as low as we can.
 
 ## API
 |name|type|required|default|description|
@@ -71,32 +79,31 @@ Common use example:
 
 ```javascript
 const PositionDay = props => {
-  const { label, selected, date, isToday, isInThePast } = props
   const onClick = (e) => {
-    if (disableDate) {
+    if (props.isInthePast) {
       e.stopPropagation()
     }
   }
   return (
     <div onClick={onClick}
       className={getStyle(props)}
-      style={getInline(isToday, isInThePast)}>
-      {label}
+      style={getInline(props)}>
+      {props.label}
     </div>)
 }
 
 const getStyle = function ({date, isSelected}) {
   return `${isSelected ? 'o_selected-day' : ''} ${date.type}-day`
 }
-const disabledStyles = {
-  cursor: 'not-allowed',
-  background: '#e4e4e4',
-  color: '#555555',
-}
-const disabledAndSelected = {
-  cursor: 'not-allowed',
-  background: '#4179a3',
-}
+
+const getInline = ({isToday, isInThePast}) => ({
+  cursor: before ? 'not-allowed' : 'inherit',
+  background: today
+  ? 'rgba(141, 224, 229, 0.5)'
+  : before ? '#e4e4e4' : 'inherit',
+  color: before ? '#555555' : 'inherit',
+})
+
 ```
 
 As you can see, we leave the default implementation as open as possible, this way we can support all the use cases we have into our apps.

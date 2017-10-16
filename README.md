@@ -1,10 +1,11 @@
-# React Multiday Calendar <sup>[![Version Badge][npm-version-svg]][package-url]</sup>
+# React Multiday Calendar <sup>[![Version Badge][npm-version-svg]][package-url]</sup> 
 
 [![dependency status][deps-svg]][deps-url]
 [![dev dependency status][dev-deps-svg]][dev-deps-url]
 [![License][license-image]][license-url]
 [![Github file size][file-size-image]]()
 [![Downloads][downloads-image]][downloads-url]
+
 
 [![npm badge][npm-badge-png]][package-url]
 

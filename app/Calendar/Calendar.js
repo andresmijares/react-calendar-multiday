@@ -5,7 +5,6 @@ import moment from 'moment'
 import {extendMoment} from 'moment-range'
 import {reject, or, isEmpty, values, equals, cond, T} from 'ramda'
 import {normalize, incMonth, decMonth, setMonthDays, TYPE, getKey} from './helpers'
-import './styles.css'
 
 class Calendar extends Component {
   static defaultProps = {
@@ -69,8 +68,8 @@ class Calendar extends Component {
   onClick (day) {
     const formatedDay = day.moment.format()
     const calendar = getKey(day.moment)
-    // const {channels, currentChannel, selected, defaultDate, monthDays} = this.state
-    const {selected, defaultDate, monthDays} = this.state
+    const {channels, currentChannel, selected, defaultDate, monthDays} = this.state
+    //const {selected, defaultDate, monthDays} = this.state
     const updatedDefaultDate = cond([
       [equals(TYPE.NEXT), () => incMonth(defaultDate)],
       [equals(TYPE.PREV), () => decMonth(defaultDate)],
@@ -78,18 +77,18 @@ class Calendar extends Component {
     ])(day.type)
 
     /* Runs this if only if the channels are activated */
-    // if (!channels[currentChannel]) {
-    //   channels[currentChannel] = []
-    // }
-    // if (channels[currentChannel].indexOf(formatedDay) === -1) {
-    //   channels[currentChannel] = channels[currentChannel].concat([formatedDay])
-    // } else {
-    //   channels[currentChannel] = channels[currentChannel].filter(d => d !== formatedDay)
-    // }
+    if (!channels[currentChannel]) {
+      channels[currentChannel] = []
+    }
+    if (channels[currentChannel].indexOf(formatedDay) === -1) {
+      channels[currentChannel] = channels[currentChannel].concat([formatedDay])
+    } else {
+      channels[currentChannel] = channels[currentChannel].filter(d => d !== formatedDay)
+    }
 
     this.setState(
       {
-        // channels,
+        channels,
         selected: this.props.isMultiple ? {
           ...selected,
           [calendar]: isEmpty(or(selected[calendar], {})) ? day.moment : {},
@@ -106,7 +105,7 @@ class Calendar extends Component {
         Returns information for the listener function
       */
       this.props.onChange({
-        // channels,
+        channels,
         current: formatedDay,
         selected: reject(isEmpty, values(this.state.selected))
                   .map(d => d.format()),

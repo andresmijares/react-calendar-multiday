@@ -5,6 +5,7 @@
 [![License][license-image]][license-url]
 [![Github file size][file-size-image]]()
 [![Downloads][downloads-image]][downloads-url]
+[![Build Status](https://travis-ci.org/sgrepo/react-calendar-multiday.svg?branch=master)](https://travis-ci.org/sgrepo/react-calendar-multiday)
 
 [![npm badge][npm-badge-png]][package-url]
 

@@ -18,12 +18,15 @@ export const setMonthDays = (month, moment) => {
   return prevMonthDays.concat(monthDays, nextMonthDays)
 }
 
-export const normalize = (selected, momentBuilder) => {
-  const normalizedDays = or(selected, []).reduce((prev, d) => {
-    const moment = momentBuilder(d)
-    prev[getKey(moment)] = moment
-    return prev
-  }, {})
+export const normalize = (selected, momentInstance) => {
+  const normalizedDays = Object
+    .keys(selected)
+    .map(date => selected[date])
+    .reduce((prev, d) => {
+      const moment = momentInstance(d)
+      prev[getKey(moment)] = moment
+      return prev
+    }, {})
   return normalizedDays
 }
 

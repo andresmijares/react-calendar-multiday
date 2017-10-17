@@ -2,17 +2,19 @@
 
 const webpack = require('webpack')
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const path = require('path')
 const env = require('yargs').argv.env // use --env with webpack 2
 
 let libraryName = 'app'
 let plugins = [
-  new ExtractTextPlugin('styles.css'),
+  // new ExtractTextPlugin('styles.css'),
+  new webpack.HotModuleReplacementPlugin(),
   new HtmlWebpackPlugin({
     template: path.resolve('./app/sample/index.ejs'),
     inject: true,
-  }),
+}),
 ]
 let outputFile
 
@@ -39,20 +41,27 @@ const config = {
         exclude: /node_modules/,
         use: [{loader: 'babel-loader'}],
       },
-			{ test: /(\.css|\.scss)$/,
-				loader: 'css-loader'
-		  },
+      { test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   resolve: {
     modules: [path.resolve('./node_modules'), path.resolve('./app')],
     extensions: ['.json', '.js'],
   },
+  devServer: {
+      historyApiFallback: true,
+      hot: true,
+      inline: true,
+      quiet: true,
+      contentBase: __dirname + '/app/sample',
+  },
   externals: {
-    react: 'react',
-    moment: 'moment',
-    'moment-range': 'moment-range',
-    ramda: 'ramda',
+    // react: 'react',
+    // moment: 'moment',
+    // 'moment-range': 'moment-range',
+    // ramda: 'ramda',
   },
   plugins: plugins,
 }

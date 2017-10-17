@@ -1,4 +1,4 @@
-# React Multiday Calendar <sup>[![Version Badge][npm-version-svg]][package-url]</sup>
+# React Multiday Calendar <sup>[![Version Badge][npm-version-svg]][package-url]</sup> 
 
 [![dependency status][deps-svg]][deps-url]
 [![dev dependency status][dev-deps-svg]][dev-deps-url]
@@ -6,6 +6,7 @@
 [![Github file size][file-size-image]]()
 [![Downloads][downloads-image]][downloads-url]
 [![Build Status](https://travis-ci.org/sgrepo/react-calendar-multiday.svg?branch=master)](https://travis-ci.org/sgrepo/react-calendar-multiday)
+
 
 [![npm badge][npm-badge-png]][package-url]
 

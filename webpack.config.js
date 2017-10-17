@@ -8,13 +8,9 @@ const path = require('path')
 const env = require('yargs').argv.env // use --env with webpack 2
 
 let libraryName = 'app'
-let plugins = (env === 'build')
-  ? [new ExtractTextPlugin('styles.css')]
-  : [new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.resolve('./app/sample/index.ejs'),
-      inject: true,
-  })]
+let plugins = [
+  new ExtractTextPlugin('styles.css'),
+]
 let outputFile
 
 if (env === 'build') {
@@ -25,7 +21,7 @@ if (env === 'build') {
 }
 
 const config = {
-  entry: (env === 'build') ? __dirname + '/app/index.js' : __dirname + '/app/sample/index.js',
+  entry: __dirname + '/app/index.js',
   devtool: 'source-map',
   output: {
     path: __dirname + '/lib',
@@ -40,8 +36,12 @@ const config = {
         exclude: /node_modules/,
         use: [{loader: 'babel-loader'}],
       },
-      { test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+      { test: /(\.css|\.scss)$/,
+        loader: ExtractTextPlugin.extract({
+            use: [
+                'css-loader?sourceMap',
+            ],
+        }),
       },
     ],
   },

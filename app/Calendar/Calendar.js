@@ -59,9 +59,10 @@ class Calendar extends Component {
   }
 
   reset () {
-    const selected = this.props.selected
+    const selected = this.state.selected
+    const empty = Object.keys(selected).length
     this.setState({
-      selected: isEmpty(selected) ? {} : normalize(selected),
+      selected: empty ? {} : normalize(selected, this.moment),
     })
   }
 
@@ -105,7 +106,7 @@ class Calendar extends Component {
         Returns information for the listener function
       */
       this.props.onChange({
-        channels,
+        // channels,
         current: formatedDay,
         selected: reject(isEmpty, values(this.state.selected))
                   .map(d => d.format()),

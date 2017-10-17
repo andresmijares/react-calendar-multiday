@@ -45,7 +45,7 @@ const MonthComponent = props => {
         </div>
         { reset &&
             <div className={'i_day-picker-reset'} onClick={reset}>
-             {'Reset'}
+             {'reset'}
            </div>
         }
       </div>

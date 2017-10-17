@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {splitEvery} from 'ramda'
 import DayWrapper from './DayWrapper'
 import moment from 'moment'
-import './styles.css'
 
 const MonthComponent = props => {
   const {days, dayNames, selected, nextMonth, prevMonth, defaultDate, onClick, reset, DayComponent} = props
@@ -46,7 +45,7 @@ const MonthComponent = props => {
         </div>
         { reset &&
             <div className={'i_day-picker-reset'} onClick={reset}>
-             {'Reset'}
+             {'reset'}
            </div>
         }
       </div>

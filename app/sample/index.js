@@ -2,9 +2,9 @@ import 'babel-polyfill' /* Support for IE11 */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import moment from 'moment'
-import PositionDay from './Calendar/PositionsDay'
-import Calendar from './Calendar/Calendar'
-import './Calendar/styles.css'
+import PositionDay from '../Calendar/PositionsDay'
+import Calendar from '../Calendar/Calendar'
+import '../Calendar/styles.css'
 
 const container = {
 	width: '320px',
@@ -30,6 +30,7 @@ class App extends React.PureComponent {
 					<div style={{width: '800px', margin: 'auto'}}>
 						<div className='container' style={container}>
 								<Calendar
+									reset={true}
 									onChange={reactToChange} />
 									<h3>{`Single Day Calendar`}</h3>
 						</div>
@@ -58,6 +59,7 @@ class App extends React.PureComponent {
 						<div className='container' style={container}>
 								<Calendar
 									isMultiple={true}
+									reset={true}
 									selected={selectedDays}
 									onChange={reactToChange} />
 									<h3>{`Multiple With Pre-selected days`}</h3>

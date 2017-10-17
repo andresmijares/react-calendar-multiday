@@ -59,17 +59,18 @@ class Calendar extends Component {
   }
 
   reset () {
-    const selected = this.props.selected
+    const selected = this.state.selected
+    const empty = Object.keys(selected).length
     this.setState({
-      selected: isEmpty(selected) ? {} : normalize(selected),
+      selected: empty ? {} : normalize(selected, this.moment),
     })
   }
 
   onClick (day) {
     const formatedDay = day.moment.format()
     const calendar = getKey(day.moment)
-    // const {channels, currentChannel, selected, defaultDate, monthDays} = this.state
-    const {selected, defaultDate, monthDays} = this.state
+    const {channels, currentChannel, selected, defaultDate, monthDays} = this.state
+    //const {selected, defaultDate, monthDays} = this.state
     const updatedDefaultDate = cond([
       [equals(TYPE.NEXT), () => incMonth(defaultDate)],
       [equals(TYPE.PREV), () => decMonth(defaultDate)],
@@ -77,18 +78,18 @@ class Calendar extends Component {
     ])(day.type)
 
     /* Runs this if only if the channels are activated */
-    // if (!channels[currentChannel]) {
-    //   channels[currentChannel] = []
-    // }
-    // if (channels[currentChannel].indexOf(formatedDay) === -1) {
-    //   channels[currentChannel] = channels[currentChannel].concat([formatedDay])
-    // } else {
-    //   channels[currentChannel] = channels[currentChannel].filter(d => d !== formatedDay)
-    // }
+    if (!channels[currentChannel]) {
+      channels[currentChannel] = []
+    }
+    if (channels[currentChannel].indexOf(formatedDay) === -1) {
+      channels[currentChannel] = channels[currentChannel].concat([formatedDay])
+    } else {
+      channels[currentChannel] = channels[currentChannel].filter(d => d !== formatedDay)
+    }
 
     this.setState(
       {
-        // channels,
+        channels,
         selected: this.props.isMultiple ? {
           ...selected,
           [calendar]: isEmpty(or(selected[calendar], {})) ? day.moment : {},

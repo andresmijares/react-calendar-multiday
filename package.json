@@ -1,6 +1,6 @@
 {
 	"name": "react-calendar-multiday",
-	"version": "0.0.15",
+	"version": "0.0.16",
 	"description": "A minimalist multiday calendar by Shiftgig",
 	"main": "lib/app.min.js",
 	"scripts": {

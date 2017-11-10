@@ -91,7 +91,16 @@
 }
 
 .o_day-picker  .i_day-picker-reset {
-  width: 25%;
+  	width: 25%;
+	cursor: pointer;
+	border: 1px solid #d3d3d3;
+	border-radius: 3px;
+	margin-top: 10px;
+	text-align: center;
+}
+
+.o_day-picker  .i_day-picker-add-channel {
+	width: 25%;
 	cursor: pointer;
 	border: 1px solid #d3d3d3;
 	border-radius: 3px;
@@ -101,6 +110,11 @@
 
 .o_selected-day {
 	background: #1a728f !important;
+	color: white !important;
+}
+
+.o_selected-current-channel-day {
+	background: green !important;
 	color: white !important;
 }
 

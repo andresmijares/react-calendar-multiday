@@ -1,4 +1,4 @@
-import {head, last, subtract, take, takeLast, or} from 'ramda'
+import {head, last, subtract, take, takeLast, cond, lte, T} from 'ramda'
 
 export const TYPE = {
   MONTH: 'month',
@@ -41,3 +41,14 @@ export const getKey = (moment) => moment.format(KEY_FORMAT)
 export const incMonth = (date) => date.add(1, 'months')
 
 export const decMonth = (date) => date.subtract(1, 'months')
+
+export const getRealMonthAndYear = (month, year) => [
+		cond([
+			[lte(12), () =>year + 1],
+			[T, () => year],
+		])(month),
+		cond([
+			[lte(12), () => month - 12],
+			[T, () => month],
+		])(month),
+	]

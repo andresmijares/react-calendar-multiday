@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {splitEvery} from 'ramda'
+import {splitEvery, isNil, isEmpty} from 'ramda'
 import DayWrapper from './DayWrapper'
 import moment from 'moment'
 
@@ -53,7 +53,8 @@ const MonthComponent = props => {
 												</button>
 										}
 										{ addChannel &&
-												<button className={'i_day-picker-add-channel'} onClick={addChannel}>
+												<button className={'i_day-picker-add-channel'} onClick={addChannel}
+												        disabled={isNil(channels[currentChannel]) || isEmpty(channels[currentChannel])}>
 													{'add'}
 												</button>
 										}

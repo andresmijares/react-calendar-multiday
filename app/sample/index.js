@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom'
 import moment from 'moment'
 import PositionDay from '../Calendar/PositionsDay'
 import Calendar from '../Calendar/Calendar'
+import {omit} from 'ramda'
 import '../Calendar/styles.css'
+
 
 const container = {
 	width: '320px',
@@ -32,11 +34,26 @@ class App extends React.Component {
 			currentChannel: 0,
 			channels: {},
 		}
+		this.addChannels = this.addChannels.bind(this)
+		this.deleteChannel = this.deleteChannel.bind(this)
 		this.setChannel = this.setChannel.bind(this)
+	}
+
+	addChannels ({channels, currentChannel}) {
+		this.setState({
+			channels: channels,
+			currentChannel: currentChannel,
+		})
 	}
 
 	setChannel () {
 		this.setState({currentChannel: 0})
+	}
+
+	deleteChannel () {
+		this.setState({
+			channels: omit(['0'], this.state.channels)
+		})
 	}
 
 	render () {
@@ -55,9 +72,11 @@ class App extends React.Component {
 							reset={true}
 							isMultiple={true}
 							onChange={reactToChange}
-							channels={{}}
-							currentChannel={this.state.currentChannel}/>
+							channels={this.state.channels}
+							currentChannel={this.state.currentChannel}
+							onAddChannel={this.addChannels}/>
 						<button onClick={this.setChannel}>{'Select channel 0'}</button>
+						<button onClick={this.deleteChannel}>{'Delete Channel 0'}</button>
 						<h3>{`Calendar with choisable channels`}</h3>
 					</div>
 					<div className='container' style={container}>

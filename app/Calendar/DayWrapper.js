@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import DefaultDay from './DefaultDay'
-import {isNil} from 'ramda'
+import {isNil, flatten} from 'ramda'
 
 const DayWrapper = (props) => {
   const nextProps = {
@@ -18,8 +18,15 @@ const DayWrapper = (props) => {
       </div>)
 }
 
-export const isSelected = ({date, selected}) => selected.some(each => each.isSame(date.moment, 'day'))
-export const isCurrentChannelSelected = ({date, channels, currentChannel}) => !isNil(channels) && !isNil(channels[currentChannel]) && channels[currentChannel].some(each => each.isSame(date.moment, 'day'))
+export const isSelected = ({date, selected, channels}) =>
+	!isNil(channels) ?
+		flatten(Object.keys(channels).map(key => channels[key])).some(each => each.isSame(date.moment, 'day')) :
+		selected.some(each => each.isSame(date.moment, 'day'))
+
+export const isCurrentChannelSelected = ({date, channels, currentChannel}) =>
+	!isNil(channels) &&
+	!isNil(channels[currentChannel]) &&
+	channels[currentChannel].some(each => each.isSame(date.moment, 'day'))
 
 
 DayWrapper.propTypes = {

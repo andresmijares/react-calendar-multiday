@@ -45,10 +45,9 @@ class Calendar extends Component {
 				if (this.state.currentChannel !== nextProps.currentChannel) {
 					this.setState({currentChannel: nextProps.currentChannel})
 				}
-				// console.log('1', this.state.currentChannel)
-				//if (this.props.channels !== nextProps.channels) {
-				//	this.setState({currentChannel: nextProps.currentChannel})
-				//}
+				if (!equals(this.props.channels, nextProps.channels)) {
+					this.setState({channels: nextProps.channels})
+				}
   }
 
   nextMonth () {
@@ -78,7 +77,7 @@ class Calendar extends Component {
   }
 
   onClick (day) {
-    const formatedDay = day.moment.format()
+    const formattedDay = day.moment.format()
     const calendar = getKey(day.moment)
     const {selected, defaultDate, monthDays} = this.state
     //const {selected, defaultDate, monthDays} = this.state
@@ -109,8 +108,8 @@ class Calendar extends Component {
         Returns information for the listener function
       */
       this.props.onChange({
-        // channels,
-        current: formatedDay,
+        channels: this.state.channels,
+        current: formattedDay,
         selected: reject(isEmpty, values(this.state.selected))
                   .map(d => d.format()),
       })
@@ -143,31 +142,18 @@ class Calendar extends Component {
     const {channels, currentChannel} = this.state
 				const max = Object.keys(channels).reduce((a, b) =>  Math.max(a, b), 0)
 
-				if (isNil(channels[max]) || channels[max].length === 0) {
+				if (currentChannel === max && channels[max].length === 0) {
       return false
 				}
 
-				const nextIndexChannel = parseInt(max) + 1
-				channels[nextIndexChannel] = []
-
 				this.setState({
 						channels,
-						currentChannel: nextIndexChannel,
-						}/* , () => this.props.handleChannel(channels, currentChannel) */
+						currentChannel: !isEmpty(channels[max]) ? Number(max) + 1 : max,
+						}, () => this.props.onAddChannel ? this.props.onAddChannel({
+							channels: this.state.channels,
+							currentChannel: this.state.currentChannel,
+					}) : true
 				)
-  }
-
-  deleteChannel (index) {
-    const {channels} = this.state
-    delete channels[index]
-    this.setState(channels)
-  }
-
-  changeChannel (index) {
-    if (this.state.currentChannel !== index) {
-      this.setState({currentChannel: index})
-    }
-    return
   }
 
 		render () {
@@ -203,7 +189,7 @@ Calendar.propTypes = {
   DayComponent: PropTypes.node,
   isMultiple: PropTypes.bool,
 		currentChannel: PropTypes.number,
-		handleChannel: PropTypes.func,
+		onAddChannel: PropTypes.func,
 }
 
 export default Calendar

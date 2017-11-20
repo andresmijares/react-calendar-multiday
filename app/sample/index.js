@@ -16,6 +16,15 @@ const container = {
 	fontFamily: 'system-ui',
 }
 
+const buttonStyle = {
+	border: 'none',
+	fontSize: '.75em',
+	outline: 'none',
+	marginLeft: '10px',
+	float: 'right',
+	cursor: 'pointer',
+}
+
 const selectedDays = [
 	moment().add(3, 'days'),
 	moment().add(7, 'days'),
@@ -47,13 +56,13 @@ class App extends React.Component {
 		})
 	}
 
-	setChannel () {
-		this.setState({currentChannel: 0})
+	setChannel (index) {
+		this.setState({currentChannel: index})
 	}
 
-	deleteChannel () {
+	deleteChannel (index) {
 		this.setState({
-			channels: omit(['0'], this.state.channels)
+			channels: omit([index], this.state.channels)
 		})
 	}
 
@@ -70,6 +79,18 @@ class App extends React.Component {
 					</div>
 					<div className='container' style={container}>
 						<h3>{`Calendar with choisable channels`}</h3>
+						<div>
+							{Object.keys(this.state.channels).map((key, index) => {
+								const channel = this.state.channels[key]
+								return <div style={{fontSize: '.85em', margin: '10px 0'}}>
+										{`🗓 ${channel.map(day => day.format('MM/DD/YY')).join(' - ')}`}
+										<button style={Object.assign({}, buttonStyle, {color: '#38b0ed'})}
+														onClick={() => this.setChannel(key)} >{'EDIT'}</button>
+										<button style={Object.assign({}, buttonStyle, {color: '#ee3838'})}
+										        onClick={() => this.deleteChannel(key)} >{'DELETE'}</button>
+								</div>
+							})}
+						</div>
 						<Calendar
 							reset={true}
 							isMultiple={true}
@@ -77,8 +98,6 @@ class App extends React.Component {
 							channels={this.state.channels}
 							currentChannel={this.state.currentChannel}
 							onAddChannel={this.addChannels}/>
-						<button onClick={this.setChannel}>{'Select channel 0'}</button>
-						<button onClick={this.deleteChannel}>{'Delete Channel 0'}</button>
 					</div>
 					<div className='container' style={container}>
 						<h3>{`Single Day Calendar`}</h3>

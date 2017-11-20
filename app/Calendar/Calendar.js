@@ -138,27 +138,27 @@ class Calendar extends Component {
 
   addChannel () {
     const {channels, currentChannel} = this.state
-				const max = Object.keys(channels).reduce((a, b) =>  Math.max(a, b), 0)
+		const max = Object.keys(channels).reduce((a, b) =>  Math.max(a, b), 0)
 
-				if (currentChannel === max && channels[max].length === 0) {
+		if (currentChannel === max && channels[max].length === 0) {
       return false
-				}
+		}
 
-				this.setState({
-						channels,
-						currentChannel: !isEmpty(channels[max]) ? Number(max) + 1 : max,
-						}, () => this.props.onAddChannel ? this.props.onAddChannel({
-							channels: this.state.channels,
-							currentChannel: this.state.currentChannel,
-					}) : true
-				)
+		this.setState({
+				channels,
+				currentChannel: !isEmpty(channels[max]) ? Number(max) + 1 : max,
+				}, () => this.props.onAddChannel ? this.props.onAddChannel({
+					channels: this.state.channels,
+					currentChannel: this.state.currentChannel,
+			}) : true
+		)
   }
 
 		render () {
     const {defaultDate, monthDays, currentChannel, channels} = this.state
     const reset = this.props.reset ? this.reset : null
 		const addChannel = !isNil(this.props.channels) ? this.addChannel : null
-				console.log('channels: ', channels)
+		console.log('channels: ', channels)
     return (
         <MonthComponent
             currentChannel={currentChannel}
@@ -186,8 +186,8 @@ Calendar.propTypes = {
   reset: PropTypes.bool,
   DayComponent: PropTypes.node,
   isMultiple: PropTypes.bool,
-		currentChannel: PropTypes.number,
-		onAddChannel: PropTypes.func,
+	currentChannel: PropTypes.number,
+	onAddChannel: PropTypes.func,
 }
 
 export default Calendar

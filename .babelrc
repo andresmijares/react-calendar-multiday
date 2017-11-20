@@ -24,7 +24,8 @@
     },
     "production": {
       "plugins": [
-        "transform-runtime"
+        "transform-runtime",
+		"babel-plugin-add-module-exports"
       ]
     }
   }

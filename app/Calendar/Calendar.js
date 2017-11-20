@@ -34,20 +34,20 @@ class Calendar extends Component {
     this.onClick = this.onClick.bind(this)
     this.retrieveSelected = this.retrieveSelected.bind(this)
     this.reset = this.reset.bind(this)
-	   this.addChannel = this.addChannel.bind(this)
-	   this.addOrRemoveDateToChannel = this.addOrRemoveDateToChannel.bind(this)
+		this.addChannel = this.addChannel.bind(this)
+		this.addOrRemoveDateToChannel = this.addOrRemoveDateToChannel.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
-				if (this.props.selected.length !== nextProps.selected.length) {
-					this.setState({selected: normalize(nextProps.selected, this.moment)})
-				}
-				if (this.state.currentChannel !== nextProps.currentChannel) {
-					this.setState({currentChannel: nextProps.currentChannel})
-				}
-				if (!equals(this.props.channels, nextProps.channels)) {
-					this.setState({channels: nextProps.channels})
-				}
+		if (this.props.selected.length !== nextProps.selected.length) {
+			this.setState({selected: normalize(nextProps.selected, this.moment)})
+		}
+		if (this.state.currentChannel !== nextProps.currentChannel) {
+			this.setState({currentChannel: nextProps.currentChannel})
+		}
+		if (!equals(this.props.channels, nextProps.channels)) {
+			this.setState({channels: nextProps.channels})
+		}
   }
 
   nextMonth () {
@@ -87,9 +87,7 @@ class Calendar extends Component {
       [T, () => defaultDate],
     ])(day.type)
 
-
-
-    this.setState(
+	  this.setState(
       {
         channels: !isNil(this.props.channels) ? this.addOrRemoveDateToChannel(day) : this.props.channels,
         selected: this.props.isMultiple ? {
@@ -159,7 +157,7 @@ class Calendar extends Component {
 		render () {
     const {defaultDate, monthDays, currentChannel, channels} = this.state
     const reset = this.props.reset ? this.reset : null
-				const addChannel = !isNil(this.props.channels) ? this.addChannel : null
+		const addChannel = !isNil(this.props.channels) ? this.addChannel : null
 				console.log('channels: ', channels)
     return (
         <MonthComponent

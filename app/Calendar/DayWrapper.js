@@ -23,10 +23,11 @@ export const isSelected = ({date, selected, channels}) =>
 		flatten(Object.keys(channels).map(key => channels[key])).some(each => each.isSame(date.moment, 'day')) :
 		selected.some(each => each.isSame(date.moment, 'day'))
 
-export const isCurrentChannelSelected = ({date, channels, currentChannel}) =>
-	!isNil(channels) &&
-	!isNil(channels[currentChannel]) &&
-	channels[currentChannel].some(each => each.isSame(date.moment, 'day'))
+export const isCurrentChannelSelected = ({date, selected, channels, currentChannel}) =>
+	!isNil(channels) ?
+		!isNil(channels[currentChannel]) &&
+		channels[currentChannel].some(each => each.isSame(date.moment, 'day')) :
+		selected.some(each => each.isSame(date.moment, 'day'))
 
 
 DayWrapper.propTypes = {

@@ -55,7 +55,7 @@ const MonthComponent = props => {
 										{ addChannel &&
 												<button className={'i_day-picker-add-channel'} onClick={addChannel}
 												        disabled={isNil(channels[currentChannel]) || isEmpty(channels[currentChannel])}>
-													{'add'}
+													{'save channel'}
 												</button>
 										}
 	       </div>

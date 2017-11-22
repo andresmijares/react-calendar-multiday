@@ -21,7 +21,7 @@ const buttonStyle = {
 	fontSize: '.75em',
 	outline: 'none',
 	marginLeft: '10px',
-	float: 'right',
+	// float: 'right',
 	cursor: 'pointer',
 }
 
@@ -82,12 +82,14 @@ class App extends React.Component {
 						<div>
 							{Object.keys(this.state.channels).map((key, index) => {
 								const channel = this.state.channels[key]
-								return <div style={{fontSize: '.85em', margin: '10px 0'}}>
-										{`🗓 ${channel.map(day => day.format('MM/DD/YY')).join(' - ')}`}
+								return <div style={{fontSize: '.85em', margin: '20px 0'}} key={index}>
+										<p style={{marginBottom: '5px', 'color' : this.state.currentChannel === index ? '#b8e986' : 'initial'}}>
+											{`🗓 ${channel.map(day => day.format('MM/DD/YY')).join(' - ')}`}
+										</p>
 										<button style={Object.assign({}, buttonStyle, {color: '#38b0ed'})}
-														onClick={() => this.setChannel(key)} >{'EDIT'}</button>
+														onClick={() => this.setChannel(parseInt(key))} >{'EDIT'}</button>
 										<button style={Object.assign({}, buttonStyle, {color: '#ee3838'})}
-										        onClick={() => this.deleteChannel(key)} >{'DELETE'}</button>
+										        onClick={() => this.deleteChannel(parseInt(key))} >{'DELETE'}</button>
 								</div>
 							})}
 						</div>

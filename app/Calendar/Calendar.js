@@ -158,7 +158,6 @@ class Calendar extends Component {
     const {defaultDate, monthDays, currentChannel, channels} = this.state
     const reset = this.props.reset ? this.reset : null
 		const addChannel = !isNil(this.props.channels) ? this.addChannel : null
-		console.log('channels: ', channels)
     return (
         <MonthComponent
             currentChannel={currentChannel}

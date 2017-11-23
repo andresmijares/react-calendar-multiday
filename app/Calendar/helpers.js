@@ -43,12 +43,12 @@ export const incMonth = (date) => date.add(1, 'months')
 export const decMonth = (date) => date.subtract(1, 'months')
 
 export const getRealMonthAndYear = (month, year) => [
-		cond([
-			[lte(12), () =>year + 1],
-			[T, () => year],
-		])(month),
-		cond([
-			[lte(12), () => month - 12],
-			[T, () => month],
-		])(month),
-	]
+  cond([
+    [lte(12), () =>year + 1],
+    [T, () => year],
+  ])(month),
+  cond([
+    [lte(12), () => month - 12],
+    [T, () => month],
+  ])(month),
+]

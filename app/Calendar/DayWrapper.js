@@ -7,7 +7,7 @@ const DayWrapper = (props) => {
   const nextProps = {
     ...props,
     isSelected: isSelected(props),
-	  isCurrentChannelSelected: isCurrentChannelSelected(props),
+    isCurrentChannelSelected: isCurrentChannelSelected(props),
   }
 
   return (
@@ -19,15 +19,15 @@ const DayWrapper = (props) => {
 }
 
 export const isSelected = ({date, selected, channels}) =>
-	!isNil(channels) ?
-		flatten(Object.keys(channels).map(key => channels[key])).some(each => each.isSame(date.moment, 'day')) :
-		selected.some(each => each.isSame(date.moment, 'day'))
+  !isNil(channels) ?
+    flatten(Object.keys(channels).map(key => channels[key])).some(each => each.isSame(date.moment, 'day')) :
+    selected.some(each => each.isSame(date.moment, 'day'))
 
 export const isCurrentChannelSelected = ({date, selected, channels, currentChannel}) =>
-	!isNil(channels) ?
-		!isNil(channels[currentChannel]) &&
-		channels[currentChannel].some(each => each.isSame(date.moment, 'day')) :
-		selected.some(each => each.isSame(date.moment, 'day'))
+  !isNil(channels) ?
+    !isNil(channels[currentChannel]) &&
+    channels[currentChannel].some(each => each.isSame(date.moment, 'day')) :
+    selected.some(each => each.isSame(date.moment, 'day'))
 
 
 DayWrapper.propTypes = {
@@ -35,8 +35,8 @@ DayWrapper.propTypes = {
   children: PropTypes.node,
   selected: PropTypes.array,
   onClick: PropTypes.func,
-	channels: PropTypes.object,
-	currentChannel: PropTypes.number,
+  channels: PropTypes.object,
+  currentChannel: PropTypes.number,
 }
 
 export default DayWrapper

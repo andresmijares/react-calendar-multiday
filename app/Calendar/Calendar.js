@@ -71,8 +71,8 @@ class Calendar extends Component {
     const empty = Object.keys(selected).length
     this.setState({
       selected: empty ? {} : normalize(selected, this.moment),
-	     channels: !isNil(this.props.channels) ? {} : null,
-	     currentChannel: 0,
+        channels: !isNil(this.props.channels) ? {} : null,
+        currentChannel: 0,
     })
   }
 
@@ -123,41 +123,41 @@ class Calendar extends Component {
   }
 
   addOrRemoveDateToChannel (day) {
-	  const {channels, currentChannel} = this.state
-	  if (!channels[currentChannel]) {
-		  channels[currentChannel] = []
-	  }
+    const {channels, currentChannel} = this.state
+    if (!channels[currentChannel]) {
+      channels[currentChannel] = []
+    }
 
-	  if (!channels[currentChannel].some(d => d.isSame(day.moment, 'day'))) {
-		  channels[currentChannel] =  channels[currentChannel].concat([day.moment])
-	  } else {
-		  channels[currentChannel] = channels[currentChannel].filter(d => !d.isSame(day.moment, 'day'))
-	  }
-	  return channels
+    if (!channels[currentChannel].some(d => d.isSame(day.moment, 'day'))) {
+      channels[currentChannel] =  channels[currentChannel].concat([day.moment])
+    } else {
+      channels[currentChannel] = channels[currentChannel].filter(d => !d.isSame(day.moment, 'day'))
+    }
+    return channels
   }
 
   addChannel () {
     const {channels, currentChannel} = this.state
-		const max = Object.keys(channels).reduce((a, b) =>  Math.max(a, b), 0)
+    const max = Object.keys(channels).reduce((a, b) =>  Math.max(a, b), 0)
 
-		if (currentChannel === max && channels[max].length === 0) {
+    if (currentChannel === max && channels[max].length === 0) {
       return false
-		}
+    }
 
-		this.setState({
-				channels,
-				currentChannel: !isEmpty(channels[max]) ? Number(max) + 1 : max,
-				}, () => this.props.onAddChannel ? this.props.onAddChannel({
-					channels: this.state.channels,
-					currentChannel: this.state.currentChannel,
-			}) : true
-		)
+    this.setState({
+      channels,
+      currentChannel: !isEmpty(channels[max]) ? Number(max) + 1 : max,
+    }, () => this.props.onAddChannel ? this.props.onAddChannel({
+      channels: this.state.channels,
+      currentChannel: this.state.currentChannel,
+      }) : true
+    )
   }
 
-		render () {
+  render () {
     const {defaultDate, monthDays, currentChannel, channels} = this.state
     const reset = this.props.reset ? this.reset : null
-		const addChannel = !isNil(this.props.channels) ? this.addChannel : null
+    const addChannel = !isNil(this.props.channels) ? this.addChannel : null
     return (
         <MonthComponent
             currentChannel={currentChannel}
@@ -185,8 +185,8 @@ Calendar.propTypes = {
   reset: PropTypes.bool,
   DayComponent: PropTypes.node,
   isMultiple: PropTypes.bool,
-	currentChannel: PropTypes.number,
-	onAddChannel: PropTypes.func,
+  currentChannel: PropTypes.number,
+  onAddChannel: PropTypes.func,
 }
 
 export default Calendar

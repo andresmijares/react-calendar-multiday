@@ -47,17 +47,17 @@ const MonthComponent = props => {
           )}
         </div>
 	       <div className={'i_day-picker-actions'}>
-										{ reset &&
-												<button className={'i_day-picker-reset'} onClick={reset}>
-												    {'reset'}
-												</button>
-										}
-										{ addChannel &&
-												<button className={'i_day-picker-add-channel'} onClick={addChannel}
-												        disabled={isNil(channels[currentChannel]) || isEmpty(channels[currentChannel])}>
-													{'save channel'}
-												</button>
-										}
+          { reset &&
+            <button className={'i_day-picker-reset'} onClick={reset}>
+              {'reset'}
+            </button>
+          }
+          { addChannel &&
+            <button className={'i_day-picker-add-channel'} onClick={addChannel}
+            disabled={isNil(channels[currentChannel]) || isEmpty(channels[currentChannel])}>
+              {'save channel'}
+            </button>
+          }
 	       </div>
       </div>
   )
@@ -75,7 +75,7 @@ MonthComponent.propTypes = {
   DayComponent: PropTypes.node,
   type: PropTypes.string,
   channels: PropTypes.object,
-		currentChannel: PropTypes.number,
+  currentChannel: PropTypes.number,
 }
 
 export default MonthComponent

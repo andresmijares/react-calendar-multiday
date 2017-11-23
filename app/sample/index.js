@@ -62,7 +62,7 @@ class App extends React.Component {
 
 	deleteChannel (index) {
 		this.setState({
-			channels: omit([index], this.state.channels)
+			channels: omit([String(index)], this.state.channels)
 		})
 	}
 
@@ -82,8 +82,8 @@ class App extends React.Component {
 						<div>
 							{Object.keys(this.state.channels).map((key, index) => {
 								const channel = this.state.channels[key]
-								return <div style={{fontSize: '.85em', margin: '20px 0'}} key={index}>
-										<p style={{marginBottom: '5px', 'color' : this.state.currentChannel === index ? '#b8e986' : 'initial'}}>
+								return <div style={{fontSize: '.85em', margin: '20px 0'}} key={key}>
+										<p style={{marginBottom: '5px', 'color' : this.state.currentChannel === parseInt(key) ? '#b8e986' : 'initial'}}>
 											{`🗓 ${channel.map(day => day.format('MM/DD/YY')).join(' - ')}`}
 										</p>
 										<button style={Object.assign({}, buttonStyle, {color: '#38b0ed'})}

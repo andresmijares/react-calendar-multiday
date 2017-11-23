@@ -34,20 +34,20 @@ class Calendar extends Component {
     this.onClick = this.onClick.bind(this)
     this.retrieveSelected = this.retrieveSelected.bind(this)
     this.reset = this.reset.bind(this)
-		this.addChannel = this.addChannel.bind(this)
-		this.addOrRemoveDateToChannel = this.addOrRemoveDateToChannel.bind(this)
+    this.addChannel = this.addChannel.bind(this)
+    this.addOrRemoveDateToChannel = this.addOrRemoveDateToChannel.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
-		if (this.props.selected.length !== nextProps.selected.length) {
-			this.setState({selected: normalize(nextProps.selected, this.moment)})
-		}
-		if (this.state.currentChannel !== nextProps.currentChannel) {
-			this.setState({currentChannel: nextProps.currentChannel})
-		}
-		if (!equals(this.props.channels, nextProps.channels)) {
-			this.setState({channels: nextProps.channels})
-		}
+    if (this.props.selected.length !== nextProps.selected.length) {
+      this.setState({selected: normalize(nextProps.selected, this.moment)})
+    }
+    if (this.state.currentChannel !== nextProps.currentChannel) {
+      this.setState({currentChannel: nextProps.currentChannel})
+    }
+    if (!equals(this.props.channels, nextProps.channels)) {
+      this.setState({channels: nextProps.channels})
+    }
   }
 
   nextMonth () {

@@ -65,7 +65,7 @@ class App extends React.Component {
     })
   }
 
-	render () {
+  render () {
       return (
         <div style={{width: '900px', margin: 'auto'}}>
           <div className='container' style={container}>
@@ -138,14 +138,14 @@ class App extends React.Component {
           </div>
         </div>
     )
-	}
+  }
 }
 
 const render = () => {
-		ReactDOM.render(
-				<App />,
-				document.getElementById('app')
-		)
+  ReactDOM.render(
+      <App />,
+      document.getElementById('app')
+  )
 }
 
 /* prevent FOUC https://stackoverflow.com/a/43902734 */

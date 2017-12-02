@@ -43,6 +43,7 @@ class App extends React.Component {
       currentChannel: 0,
       channels: {},
     }
+    this.onReset = this.onReset.bind(this)
     this.addChannels = this.addChannels.bind(this)
     this.deleteChannel = this.deleteChannel.bind(this)
     this.setChannel = this.setChannel.bind(this)
@@ -62,6 +63,13 @@ class App extends React.Component {
   deleteChannel (index) {
     this.setState({
       channels: omit([String(index)], this.state.channels)
+    })
+  }
+
+  onReset () {
+    this.setState({
+      channels: {},
+      currentChannel: 0
     })
   }
 
@@ -96,6 +104,7 @@ class App extends React.Component {
               reset={true}
               isMultiple={true}
               onChange={reactToChange}
+              onReset={this.onReset}
               channels={this.state.channels}
               currentChannel={this.state.currentChannel}
               onAddChannel={this.addChannels}/>

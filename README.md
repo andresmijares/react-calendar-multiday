@@ -99,11 +99,11 @@ const getStyle = function ({date, isSelected}) {
 }
 
 const getInline = ({isToday, isInThePast}) => ({
-  cursor: before ? 'not-allowed' : 'inherit',
-  background: today
+  cursor: isInThePast ? 'not-allowed' : 'inherit',
+  background: isToday
   ? 'rgba(141, 224, 229, 0.5)'
-  : before ? '#e4e4e4' : 'inherit',
-  color: before ? '#555555' : 'inherit',
+  : isInThePast ? '#e4e4e4' : 'inherit',
+  color: isInThePast ? '#555555' : 'inherit',
 })
 
 ```

@@ -73,7 +73,8 @@ class Calendar extends Component {
       selected: empty ? {} : normalize(selected, this.moment),
         channels: !isNil(this.props.channels) ? {} : null,
         currentChannel: 0,
-    })
+    }, () => this.props.onReset ? this.props.onReset() : true
+    )
   }
 
   onClick (day) {
@@ -177,16 +178,17 @@ class Calendar extends Component {
 }
 
 Calendar.propTypes = {
+  channels: PropTypes.object,
+  DayComponent: PropTypes.node,
+  onChange: PropTypes.func.isRequired,
+  onReset: PropTypes.func,
+  onAddChannel: PropTypes.func,
+  selected: PropTypes.array,
   month: PropTypes.number,
   year: PropTypes.number,
-  selected: PropTypes.array,
-  channels: PropTypes.object,
-  onChange: PropTypes.func.isRequired,
-  reset: PropTypes.bool,
-  DayComponent: PropTypes.node,
-  isMultiple: PropTypes.bool,
   currentChannel: PropTypes.number,
-  onAddChannel: PropTypes.func,
+  reset: PropTypes.bool,
+  isMultiple: PropTypes.bool,
 }
 
 export default Calendar

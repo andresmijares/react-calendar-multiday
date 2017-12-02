@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import MonthComponent from './MonthComponent'
 import moment from 'moment'
 import {extendMoment} from 'moment-range'
-import {reject, or, isEmpty, values, equals, cond, T} from 'ramda'
-import {normalize, incMonth, decMonth, setMonthDays, TYPE, getKey} from './helpers'
+import {reject, or, isEmpty, values, equals, cond, T, isNil} from 'ramda'
+import {normalize, incMonth, decMonth, setMonthDays, TYPE, getKey, getRealMonthAndYear} from './helpers'
 
 class Calendar extends Component {
   static defaultProps = {
@@ -12,21 +12,21 @@ class Calendar extends Component {
     month: moment().get('month'),
     isMultiple: false,
     selected: [],
-    channels: {},
+    channels: null,
   }
 
   constructor (props) {
     super(props)
     this.moment = extendMoment(moment)
     const {selected, channels} = this.props
-    const defaultDate = this.moment([props.year, props.month])
+    const defaultDate = this.moment(getRealMonthAndYear(this.props.month, this.props.year))
 
     this.state = {
       defaultDate: defaultDate,
       selected: normalize(selected, this.moment),
       monthDays: setMonthDays(defaultDate, this.moment),
       channels,
-      currentChannel: 1,
+      currentChannel: props.currentChannel || 0,
     }
 
     this.nextMonth = this.nextMonth.bind(this)
@@ -34,11 +34,19 @@ class Calendar extends Component {
     this.onClick = this.onClick.bind(this)
     this.retrieveSelected = this.retrieveSelected.bind(this)
     this.reset = this.reset.bind(this)
+    this.addChannel = this.addChannel.bind(this)
+    this.addOrRemoveDateToChannel = this.addOrRemoveDateToChannel.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
     if (this.props.selected.length !== nextProps.selected.length) {
       this.setState({selected: normalize(nextProps.selected, this.moment)})
+    }
+    if (this.state.currentChannel !== nextProps.currentChannel) {
+      this.setState({currentChannel: nextProps.currentChannel})
+    }
+    if (!equals(this.props.channels, nextProps.channels)) {
+      this.setState({channels: nextProps.channels})
     }
   }
 
@@ -63,13 +71,16 @@ class Calendar extends Component {
     const empty = Object.keys(selected).length
     this.setState({
       selected: empty ? {} : normalize(selected, this.moment),
-    })
+        channels: !isNil(this.props.channels) ? {} : null,
+        currentChannel: 0,
+    }, () => this.props.onReset ? this.props.onReset() : true
+    )
   }
 
   onClick (day) {
-    const formatedDay = day.moment.format()
+    const formattedDay = day.moment.format()
     const calendar = getKey(day.moment)
-    const {channels, currentChannel, selected, defaultDate, monthDays} = this.state
+    const {selected, defaultDate, monthDays} = this.state
     //const {selected, defaultDate, monthDays} = this.state
     const updatedDefaultDate = cond([
       [equals(TYPE.NEXT), () => incMonth(defaultDate)],
@@ -77,19 +88,9 @@ class Calendar extends Component {
       [T, () => defaultDate],
     ])(day.type)
 
-    /* Runs this if only if the channels are activated */
-    if (!channels[currentChannel]) {
-      channels[currentChannel] = []
-    }
-    if (channels[currentChannel].indexOf(formatedDay) === -1) {
-      channels[currentChannel] = channels[currentChannel].concat([formatedDay])
-    } else {
-      channels[currentChannel] = channels[currentChannel].filter(d => d !== formatedDay)
-    }
-
-    this.setState(
+	  this.setState(
       {
-        channels,
+        channels: !isNil(this.props.channels) ? this.addOrRemoveDateToChannel(day) : this.props.channels,
         selected: this.props.isMultiple ? {
           ...selected,
           [calendar]: isEmpty(or(selected[calendar], {})) ? day.moment : {},
@@ -106,8 +107,8 @@ class Calendar extends Component {
         Returns information for the listener function
       */
       this.props.onChange({
-        // channels,
-        current: formatedDay,
+        channels: this.state.channels,
+        current: formattedDay,
         selected: reject(isEmpty, values(this.state.selected))
                   .map(d => d.format()),
       })
@@ -122,35 +123,42 @@ class Calendar extends Component {
     .filter(d => d.isBetween(prevMonth, nextMonth))
   }
 
+  addOrRemoveDateToChannel (day) {
+    const {channels, currentChannel} = this.state
+    if (!channels[currentChannel]) {
+      channels[currentChannel] = []
+    }
+
+    if (!channels[currentChannel].some(d => d.isSame(day.moment, 'day'))) {
+      channels[currentChannel] =  channels[currentChannel].concat([day.moment])
+    } else {
+      channels[currentChannel] = channels[currentChannel].filter(d => !d.isSame(day.moment, 'day'))
+    }
+    return channels
+  }
+
   addChannel () {
-    const {channels} = this.state
-    const max = Object.keys(channels).reduce((a, b) => {
-        return Math.max(a, b)
-    })
-    /* check if the last channels is already filled */
-    if (channels[max].length === 0) {
+    const {channels, currentChannel} = this.state
+    const max = Object.keys(channels).reduce((a, b) =>  Math.max(a, b), 0)
+
+    if (currentChannel === max && channels[max].length === 0) {
       return false
     }
-    channels[max + 1] = []
-    this.setState(channels)
-  }
 
-  deleteChannel (index) {
-    const {channels} = this.state
-    delete channels[index]
-    this.setState(channels)
-  }
-
-  changeChannel (index) {
-    if (this.state.currentChannel !== index) {
-      this.setState({currentChannel: index})
-    }
-    return
+    this.setState({
+      channels,
+      currentChannel: !isEmpty(channels[max]) ? Number(max) + 1 : max,
+    }, () => this.props.onAddChannel ? this.props.onAddChannel({
+      channels: this.state.channels,
+      currentChannel: this.state.currentChannel,
+      }) : true
+    )
   }
 
   render () {
     const {defaultDate, monthDays, currentChannel, channels} = this.state
     const reset = this.props.reset ? this.reset : null
+    const addChannel = !isNil(this.props.channels) ? this.addChannel : null
     return (
         <MonthComponent
             currentChannel={currentChannel}
@@ -161,6 +169,7 @@ class Calendar extends Component {
             defaultDate={defaultDate}
             onClick={this.onClick}
             reset={reset}
+            addChannel={addChannel}
             nextMonth={this.nextMonth}
             DayComponent={this.props.DayComponent}
             prevMonth={this.prevMonth}/>
@@ -169,13 +178,16 @@ class Calendar extends Component {
 }
 
 Calendar.propTypes = {
+  channels: PropTypes.object,
+  DayComponent: PropTypes.node,
+  onChange: PropTypes.func.isRequired,
+  onReset: PropTypes.func,
+  onAddChannel: PropTypes.func,
+  selected: PropTypes.array,
   month: PropTypes.number,
   year: PropTypes.number,
-  selected: PropTypes.array,
-  channels: PropTypes.object,
-  onChange: PropTypes.func.isRequired,
+  currentChannel: PropTypes.number,
   reset: PropTypes.bool,
-  DayComponent: PropTypes.node,
   isMultiple: PropTypes.bool,
 }
 

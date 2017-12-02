@@ -4,15 +4,16 @@
 
 .o_day-picker .e_day-picker-buttons {
 	display: flex;
+	justify-content: center;
 	align-items: center;
 	position: relative;
 	background-color: white;
 }
 
 .o_day-picker .i_day-picker-title {
-	flex-basis: 100%;
 	padding: 10px;
 	text-align: center;
+	font-size: 1.1em;
 }
 
 .o_day-picker .e_day-picker-arrow-container {
@@ -48,6 +49,7 @@
 	width: 20%;
 	height: 20%;
 	text-align: center;
+	font-size: 0.8em;
 }
 
 .o_day-picker .i_day-picker-body {
@@ -63,7 +65,7 @@
 }
 
 .o_day-picker .i_day-picker-row > div {
-	border: solid #eaecec;
+	border: solid #cccccc;
 	border-width:  0  1px 1px  0;
 	width: 20%;
 }
@@ -73,14 +75,18 @@
 	text-align: left;
 	font-size: 0.7em;
 	min-height: 4em;
+	transition: .1s background linear;
+	outline: none;
+}
+
+.o_day-picker .i_day-picker-row [class*="-day"]:hover {
+	background-color: rgba(184, 233, 134, .4) !important;
 }
 
 .o_day-picker .i_day-picker-row .selected-day {
 	color: white;
 	background-color: #70bde2;
 }
-
-.o_day-picker .i_day-picker-row .month-day {}
 
 .o_day-picker .i_day-picker-row .prev-month-day {
 	color: #b3b3b3;
@@ -90,18 +96,53 @@
 	color: #b3b3b3;
 }
 
-.o_day-picker  .i_day-picker-reset {
-  width: 25%;
+.i_day-picker-actions button{
 	cursor: pointer;
-	border: 1px solid #d3d3d3;
 	border-radius: 3px;
-	margin-top: 10px;
+	margin-top: 25px;
 	text-align: center;
+	padding: .4em 1.5em;
+	font-size: 1em;
+	text-transform: uppercase;
+	margin-right: 20px;
+	min-width: 150px;
+	outline: none;
+}
+.o_day-picker  .i_day-picker-reset {
+	border: 2px solid #8f8f8f;
+	color: #8f8f8f;
 }
 
-.o_selected-day {
-	background: #1a728f !important;
-	color: white !important;
+.o_day-picker  .i_day-picker-reset:hover {
+	background: #8f8f8f;
+	color: #fff;
+}
+
+.o_day-picker  .i_day-picker-add-channel {
+	 border: 2px solid #38b0ed;
+	 color: #38b0ed;
+}
+
+.o_day-picker  .i_day-picker-add-channel:disabled {
+	opacity: .2 !important;
+}
+
+.o_day-picker  .i_day-picker-add-channel:hover {
+	background: #38b0ed;
+	color: #fff;
+}
+
+.o_day-picker .i_day-picker-row .o_selected-day,
+.o_day-picker .i_day-picker-row .o_selected-day:hover,
+.o_day-picker .i_day-picker-row [class*="-day"][disabled]:hover{
+	background: rgba(155, 155, 155, .2) !important;
+	color: #000 !important;
+	cursor: not-allowed !important;
+}
+
+.o_selected-current-channel-day {
+	background: #b8e986 !important;
+	color: #000 !important;
 }
 
 

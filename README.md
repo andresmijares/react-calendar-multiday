@@ -113,10 +113,6 @@ As you can see, we leave the default implementation as open as possible, this wa
 ## Styles
 We expose a few css clases that you can edit, otherwise, you can use our ugly css default.
 
-```javascript
-  import 'react-calendar-multiday/lib/styles.css'
-```
-
 * o_day_picker: the calendar container
 * i_day-picker-header: weeks headers
 * i_day-picker-body: calendar body

@@ -10,8 +10,6 @@ const env = require('yargs').argv.env // use --env with webpack 2
 let libraryName = 'app'
 let plugins = [
   // new ExtractTextPlugin('styles.css'),
-
-
 ]
 let outputFile
 

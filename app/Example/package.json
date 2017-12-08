@@ -11,7 +11,7 @@
 	"ramda": "*",
 	"react": "*",
 	"react-dom": "*",
-	"react-calendar-multiday": "0.0.18"
+	"react-calendar-multiday": "*"
   },
   "scripts": {
 	"start": "react-scripts start",

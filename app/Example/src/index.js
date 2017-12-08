@@ -1,12 +1,9 @@
-import 'babel-polyfill' /* Support for IE11 */
+// import 'babel-polyfill' /* Support for IE11 */
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Calendar from 'react-calendar-multiday'
 import moment from 'moment'
-import PositionDay from '../Calendar/PositionsDay'
-import Calendar from '../Calendar/Calendar'
 import {omit} from 'ramda'
-import '../Calendar/styles.css'
-
 
 const container = {
   width: '375px',
@@ -133,7 +130,6 @@ class App extends React.Component {
             <h3>{`Multiple Day Calendar`}</h3>
             <Calendar
               isMultiple={true}
-              DayComponent={<PositionDay />}
               onChange={reactToChange} />
           </div>
           <div style={{clear: 'both'}}></div>
@@ -153,7 +149,7 @@ class App extends React.Component {
 const render = () => {
   ReactDOM.render(
       <App />,
-      document.getElementById('app')
+      document.getElementById('root')
   )
 }
 

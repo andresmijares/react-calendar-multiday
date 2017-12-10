@@ -99,11 +99,11 @@ const getStyle = function ({date, isSelected}) {
 }
 
 const getInline = ({isToday, isInThePast}) => ({
-  cursor: isInThePast ? 'not-allowed' : 'inherit',
-  background: isToday
+  cursor: before ? 'not-allowed' : 'inherit',
+  background: today
   ? 'rgba(141, 224, 229, 0.5)'
-  : isInThePast ? '#e4e4e4' : 'inherit',
-  color: isInThePast ? '#555555' : 'inherit',
+  : before ? '#e4e4e4' : 'inherit',
+  color: before ? '#555555' : 'inherit',
 })
 
 ```
@@ -112,6 +112,10 @@ As you can see, we leave the default implementation as open as possible, this wa
 
 ## Styles
 We expose a few css clases that you can edit, otherwise, you can use our ugly css default.
+
+```javascript
+  import 'react-calendar-multiday/lib/styles.css'
+```
 
 * o_day_picker: the calendar container
 * i_day-picker-header: weeks headers

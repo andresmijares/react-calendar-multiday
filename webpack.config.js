@@ -9,7 +9,7 @@ const env = require('yargs').argv.env // use --env with webpack 2
 
 let libraryName = 'app'
 let plugins = [
-  // new ExtractTextPlugin('styles.css'),
+  new ExtractTextPlugin('styles.css'),
 ]
 let outputFile
 
@@ -17,11 +17,6 @@ if (env === 'build') {
   plugins.push(new UglifyJsPlugin({ minimize: true }))
   outputFile = libraryName + '.min.js'
 } else {
-  plugins.push(new webpack.HotModuleReplacementPlugin(),)
-  plugins.push(new HtmlWebpackPlugin({
-    template: path.resolve('./app/sample/index.ejs'),
-    inject: true,
-  }),)
   outputFile = libraryName + '.js'
 }
 
@@ -41,8 +36,12 @@ const config = {
         exclude: /node_modules/,
         use: [{loader: 'babel-loader'}],
       },
-      { test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+      { test: /(\.css|\.scss)$/,
+        loader: ExtractTextPlugin.extract({
+            use: [
+                'css-loader?sourceMap',
+            ],
+        }),
       },
     ],
   },
@@ -51,39 +50,18 @@ const config = {
     extensions: ['.json', '.js'],
   },
   devServer: {
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    quiet: true,
-    contentBase: __dirname + '/app/sample',
+      historyApiFallback: true,
+      hot: true,
+      inline: true,
+      quiet: true,
+      contentBase: __dirname + '/app/sample',
   },
-  externals: [
-    {
-      'react-dom': {
-        root: 'ReactDOM',
-        commonjs2: 'react-dom',
-        commonjs: 'react-dom',
-        amd: 'react-dom'
-      }
-    },
-    {
-      'react': {
-        root: 'React',
-        commonjs2: 'react',
-        commonjs: 'react',
-        amd: 'react'
-      }
-    },
-    {
-      moment: 'moment'
-    },
-    {
-      'moment-range': 'moment-range'
-    },
-    {
-      ramda: 'ramda'
-    },
-  ],
+  externals: {
+    react: 'react',
+    moment: 'moment',
+    'moment-range': 'moment-range',
+    ramda: 'ramda',
+  },
   plugins: plugins,
 }
 

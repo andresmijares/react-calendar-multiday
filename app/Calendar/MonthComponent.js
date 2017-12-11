@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {splitEvery} from 'ramda'
+import {splitEvery, isNil, isEmpty} from 'ramda'
 import DayWrapper from './DayWrapper'
 import moment from 'moment'
 
 const MonthComponent = props => {
-  const {days, dayNames, selected, nextMonth, prevMonth, defaultDate, onClick, reset, DayComponent} = props
+  const { days, dayNames, selected, nextMonth, prevMonth, defaultDate, onClick,
+	         reset, DayComponent, addChannel, channels, currentChannel } = props
   const weeks = splitEvery(7, days)
   return (
       <div className={'o_day-picker'}>
@@ -36,6 +37,8 @@ const MonthComponent = props => {
                         isToday={moment().format('YYYY-MM-DD') === d.moment.format('YYYY-MM-DD')}
                         isInThePast={d.moment.isBefore(moment(), 'day')}
                         selected={selected}
+                        channels={channels}
+                        currentChannel={currentChannel}
                         onClick={onClick}>
                       {DayComponent}
                     </DayWrapper>
@@ -43,11 +46,19 @@ const MonthComponent = props => {
               </div>
           )}
         </div>
-        { reset &&
-            <div className={'i_day-picker-reset'} onClick={reset}>
-             {'reset'}
-           </div>
-        }
+	       <div className={'i_day-picker-actions'}>
+          { reset &&
+            <button className={'i_day-picker-reset'} onClick={reset}>
+              {'reset'}
+            </button>
+          }
+          { addChannel &&
+            <button className={'i_day-picker-add-channel'} onClick={addChannel}
+            disabled={isNil(channels[currentChannel]) || isEmpty(channels[currentChannel])}>
+              {'save channel'}
+            </button>
+          }
+	       </div>
       </div>
   )
 }
@@ -64,6 +75,7 @@ MonthComponent.propTypes = {
   DayComponent: PropTypes.node,
   type: PropTypes.string,
   channels: PropTypes.object,
+  currentChannel: PropTypes.number,
 }
 
 export default MonthComponent

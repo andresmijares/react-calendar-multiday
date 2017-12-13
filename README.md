@@ -5,12 +5,12 @@
 [![License][license-image]][license-url]
 [![Github file size][file-size-image]]()
 [![Downloads][downloads-image]][downloads-url]
-[![Build Status](https://travis-ci.org/sgrepo/react-calendar-multiday.svg?branch=master)](https://travis-ci.org/sgrepo/react-calendar-multiday)
+[![Build Status](https://travis-ci.org/andresmijares/react-calendar-multiday.svg?branch=master)](https://travis-ci.org/andresmijares/react-calendar-multiday)
 
 
 [![npm badge][npm-badge-png]][package-url]
 
-A minimalist React Calendar used for our scheduling tools.
+A minimalist React Calendar used for scheduling tools.
 
 If you want to play with it:
 
@@ -124,15 +124,15 @@ We expose a few css clases that you can edit, otherwise, you can use our ugly cs
 MIT
 
 [package-url]: https://npmjs.org/package/react-calendar-multiday
-[npm-version-svg]: http://versionbadg.es/sgrepo/react-calendar-multiday.svg
+[npm-version-svg]: http://versionbadg.es/andresmijares/react-calendar-multiday.svg
 [npm-badge-png]: https://nodei.co/npm/react-calendar-multiday.png?downloads=true&stars=true
-[deps-svg]: https://david-dm.org/sgrepo/react-calendar-multiday.svg
-[deps-url]: https://david-dm.org/sgrepo/react-calendar-multiday
-[dev-deps-svg]: https://david-dm.org/sgrepo/react-calendar-multiday.svg
-[dev-deps-url]: https://david-dm.org/sgrepo/react-calendar-multiday.svg#info=devDependencies
+[deps-svg]: https://david-dm.org/andresmijares/react-calendar-multiday.svg
+[deps-url]: https://david-dm.org/andresmijares/react-calendar-multiday
+[dev-deps-svg]: https://david-dm.org/andresmijares/react-calendar-multiday.svg
+[dev-deps-url]: https://david-dm.org/andresmijares/react-calendar-multiday.svg#info=devDependencies
 [license-image]: http://img.shields.io/npm/l/react-calendar-multiday.svg
 [license-url]: LICENSE
 [downloads-image]: http://img.shields.io/npm/dm/react-calendar-multiday.svg
 [downloads-url]: http://npm-stat.com/charts.html?package=react-calendar-multiday
-[file-size-image]: https://img.shields.io/github/size/sgrepo/react-calendar-multiday/lib/app.min.js.svg
+[file-size-image]: https://img.shields.io/github/size/andresmijares/react-calendar-multiday/lib/app.min.js.svg
 

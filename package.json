@@ -1,7 +1,7 @@
 {
   "name": "react-calendar-multiday",
   "version": "0.0.21",
-  "description": "A minimalist multiday calendar by Shiftgig",
+  "description": "A minimalist multiday calendar",
   "main": "lib/app.min.js",
   "scripts": {
     "build": "webpack --env build",
@@ -66,7 +66,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sgrepo/react-calendar-multiday.git"
+    "url": "git+https://github.com/andresmijares/react-calendar-multiday.git"
   },
   "bundlesize": [
     {

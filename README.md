@@ -18,8 +18,15 @@ If you want to play with it:
 
 ## Install
 Using npm or yarn.
+```bash
+    npm install react-calendar-multiday
 ```
-  npm install react-calendar-multiday
+
+## Run Example
+```bash
+    cd app/Example
+    npm install
+    npm run start
 ```
 
 ## Import
@@ -27,7 +34,6 @@ As a default component:
 
 ```javascript
   import Calendar from 'react-calendar-multiday'
-  import 'react-calendar-multiday/lib/styles.css'
 ```
 
 ## Dependencies
@@ -36,42 +42,49 @@ It uses **moment** and **ramda** behind the scenes, we are working to remove the
 ## API
 |name|type|required|default|description|
 |---|---|---|---|---|
-|**onChange**|function|Yes |-|Exposed the current selections|
+|**onChange**|Function|Yes |-|Callback fired once click on a date. Expose the current selections|
+|**onAddChannel**|Function|No|-|Callback fired once confirm channel selection. Expose channels and currentChannel|
+|**onReset**|Function|No|-|Callback fired once click Reset (Reset needs to be true)|
+|**channels**|Dict object|No|-|Store selected dates by channels|
 |**selected**|Array of Moment Instances|No| [] |Pass a selection of dates| 
 |**year**|Moment Object - Year|No| Current |Select the default year|
 |**month**|Moment Object - Month|No| Current |Select the default month|
+|**currentChannel**|Number|No|-|Key of current channel|
+|**reset**|Boolean|No|false|Display a clear selection button|
 |**isMultiple**|Boolean|No|false|Define if you need one sigle date selection or multiple|
 |**DayComponent**|React Node|No|Default Day Component|Renders each day into the calendar|
-|**reset**|Boolean|No|false|Display a clear selection button|
+
+
 
 ### OnChange
 Returns an object with the **current** selection and the **selected** date(s).
 
 ```javascript
-  {
+{
     current: "2017-10-16T00:00:00-03:00",
-    selected: ["2017-10-16T00:00:00-03:00"]
-
-  }
+    selected: ["2017-10-16T00:00:00-03:00"],
+    channels: {0: ["2017-10-16T00:00:00-03:00"]} // if channels are available
+}
 ```
 
 ### isMultiple
 The calendar will allow to select one single day or multiples, the only different with be return object on the **onChange** function, it can contains one or more dates.
 
 ```javascript
-  {
+{
     current: "2017-10-16T00:00:00-03:00",
-    selected: ["2017-10-16T00:00:00-03:00", "2017-10-27T00:00:00-03:00", "2017-11-05T00:00:00-03:00"]
-
-  }
+    selected: ["2017-10-16T00:00:00-03:00", "2017-10-27T00:00:00-03:00", "2017-11-05T00:00:00-03:00"],
+    channels: {0: ["2017-10-16T00:00:00-03:00", "2017-10-27T00:00:00-03:00", "2017-11-05T00:00:00-03:00"]} // if channels are available
+}
 ```
 
 ### DayComponent
 A component that will render on each day, it receives several props where the most importants **label** and **isSelected**.
-  * **Label**: String; Represents the day character.
-  * **isSelected**: Booleam; True if the day is included in the selected array.
-  * **isToday**: Booleam; True if the value match today;s date.
-  * **isInThePast**: Boolem; True if the value is before than today.
+* **Label**: String; Represents the day character.
+* **isSelected**: Booleam; True if the day is included in the selected array.
+* **isCurrentChannelSelected**: Booleam; True if the day is included in the selected array for the current channel.
+* **isToday**: Booleam; True if the value match today;s date.
+* **isInThePast**: Boolem; True if the value is before than today.
 
 Some other properties are expose like **selected** which is the selection array, we expose it cause we need that rule to manage inside business cases.
 
@@ -119,6 +132,8 @@ We expose a few css clases that you can edit, otherwise, you can use our ugly cs
 * e_day-picker-buttons: prev and next month
 * i_day-picker-row: weeks row
 * i_day-picker-reset: reset button
+* i_day-picker-add-channel: add channel button
+* o_selected-current-channel-day: date selected for current channel
 
 ## License
 MIT
@@ -135,4 +150,3 @@ MIT
 [downloads-image]: http://img.shields.io/npm/dm/react-calendar-multiday.svg
 [downloads-url]: http://npm-stat.com/charts.html?package=react-calendar-multiday
 [file-size-image]: https://img.shields.io/github/size/andresmijares/react-calendar-multiday/lib/app.min.js.svg
-

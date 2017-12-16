@@ -1,6 +1,6 @@
 {
   "name": "react-calendar-multiday",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "A minimalist multiday calendar",
   "main": "lib/app.min.js",
   "scripts": {

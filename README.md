@@ -150,4 +150,3 @@ MIT
 [downloads-image]: http://img.shields.io/npm/dm/react-calendar-multiday.svg
 [downloads-url]: http://npm-stat.com/charts.html?package=react-calendar-multiday
 [file-size-image]: https://img.shields.io/github/size/andresmijares/react-calendar-multiday/lib/app.min.js.svg
-

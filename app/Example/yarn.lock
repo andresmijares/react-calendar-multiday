@@ -3506,28 +3506,17 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-calendar-multiday@0.0.17:
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/react-calendar-multiday/-/react-calendar-multiday-0.0.17.tgz#c3f83a67e15c1369720684a9ee336cb2f36f4740"
+react-calendar-multiday@*:
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/react-calendar-multiday/-/react-calendar-multiday-0.0.22.tgz#194be0d21a44e591d507c389635fab1c787c4a9b"
   dependencies:
     moment "^2.18.1"
     moment-range "^3.0.3"
     ramda "^0.24.1"
-    react "^16.0.0"
-    react-dom "16.0.0"
 
 react-dom@*:
-  version "16.2.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.0"
-
-react-dom@16.0.0:
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.0.0.tgz#9cc3079c3dcd70d4c6e01b84aab2a7e34c303f58"
+  version "16.2.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.1.tgz#5cfb32f66267ece7b3850466bf3b219d4911fc1a"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -3580,7 +3569,7 @@ react-scripts@0.2.0:
   optionalDependencies:
     fsevents "1.0.14"
 
-react@*, react@^16.0.0:
+react@*:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
   dependencies:
